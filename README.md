@@ -1,40 +1,50 @@
 ![Depression Center Logo](https://github.com/DepressionCenter/.github/blob/main/images/EFDCLogo_375w.png "depressioncenter.org")
 
-# <Repository Title>
+# Mobile Technologies for Research Illustrations
 
 ## Description
-<Program/Library name> is a < program/library/collection of scripts > for < description of what it does and what problem it solves >.
+Diagrams and 3D models showcasing mobile technologies devices used in research, such as wearables, nearables, intermittent wearables, and smartphone sensors.
 
 
 
 ## Quick Start Guide
-+ < Short compile/run instructions, without too much detail >
++ Click on an illustration from the list below.
++ Each illustration contains a README file with a preview and detailed description, a source directory with the original files, and an output directory with ready-to-view exports.
++ Whenever possible, we use open source or defacto industry-standard formats for interoperability.
 
 
+## List of Illustrations
+### 3D Models
++ [Wearable Device Types by Body Part](wearable-device-types-by-body-part/README.md)
 
 ## Documentation
-+ The full documentation is available at: < Link to manual, wiki, full documentation, etc. >
-+ __OR__ Detailed setup and use instructions are available in the companion knowledge base article, [ article_title ]( link ).
++ Documentation for this project is available at the Eisenberg Family Depression Center's [Knowledge Base](https://michmed.org/efdc-kb).
 
 
 
 
 ## Additional Resources
-+ < Links to study website, related projects, etc. >
++ 3D models are published on Sketchfab under the [Mobile Technologies for Research Illustrations](https://skfb.ly/prVqv) collection.
++ Editors for source files:
+  + [Blender](https://www.blender.org)
+  + [Dia](https://wiki.gnome.org/Apps/Dia)
+  + [Draw.io / Diagrams.net](https://app.diagrams.net)
+  + [Gimp](https://www.gimp.org)
+  + [Inkscape](https://www.microsoft.com/en-us/microsoft-365/visio/flowchart-software)
+  + [Microsoft Visio](https://www.microsoft.com/en-us/microsoft-365/visio/flowchart-software)
+  + Office application suites - [Calligra Suite](https://calligra.org/), [LibreOffice](https://www.libreoffice.org/), [Microsoft Office / 365](https://office.microsoft.com/)
 
 
 
 ## About the Team
-< 1-2 paragraphs about your department, core, lab, study team, class or project. This is your marketing space! >
-
-Learn more at: < link to dept/lab/project website >
+The [Mobile Technologies Core](https://depressioncenter.org/mobiletech) provides investigators across the University of Michigan the support and guidance needed to utilize mobile technologies and digital mental health measures in their studies. Experienced faculty and staff offer hands-on consultative services to researchers throughout the University – regardless of specialty or research focus.
 
 
 
 ## Contact
 To get in touch, contact the individual developers in the check-in history.
 
-If you need assistance identifying a contact person, email the project maintainers at: < dept/lab/mcommunity group email address >.
+If you need assistance identifying a contact person, email the EFDC's Mobile Technologies Core at: efdc-mobiletech@umich.edu.
 
 
 
@@ -42,13 +52,11 @@ If you need assistance identifying a contact person, email the project maintaine
 #### Contributors:
 + Eisenberg Family Depression Center [(@DepressionCenter)](https://github.com/DepressionCenter/)
 + Gabriel Mongefranco [(@gabrielmongefranco)](https://github.com/gabrielmongefranco)
-+ Name [ @githubusername ]( link to github profile or website )
 
 
 
 #### This work is based in part on the following projects, libraries and/or studies:
-+ None
-+ __OR__ < Library or project name > - < link >
++ See individual illustrations for specifics and attribution notices.
 
 
 
