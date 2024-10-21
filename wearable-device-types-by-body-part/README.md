@@ -5,7 +5,7 @@
 ## Description
 A human body annotated with common types of consumer-grade wearables used in research. This 3D model has clickable areas on different body parts that display the device types that can be worn on that area.  
 
-![Preview](wearable-device-types-by-body-part-preview.png "Example / Preview")
+[<img src="wearable-device-types-by-body-part-preview.png" title="Preview" alt="Example / Preview" />](https://sketchfab.com/models/42c9fc2d50474cb6a44a1d02c9f60b3c/embed?autostart=1&annotations_visible=1&annotation=0&dnt=1)
 
 
 
