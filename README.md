@@ -1,6 +1,6 @@
 ![Depression Center Logo](https://github.com/DepressionCenter/.github/blob/main/images/EFDCLogo_375w.png "depressioncenter.org")
 
-# Mobile Technologies for Research Illustrations
+# Mobile Technologies for Research: Illustrations
 
 ## Description
 Diagrams and 3D models showcasing mobile technologies devices used in research, such as wearables, nearables, intermittent wearables, and smartphone sensors.
