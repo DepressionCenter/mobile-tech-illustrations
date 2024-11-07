@@ -146,7 +146,7 @@ A human body annotated with common types of consumer-grade wearables used in res
 
 ### Sleep Position Pods
 + Sleep monitor devices with applications for pregnancy. In addition to sleep stages and common sleep metrics, they can track sleep position and alert users when changes are recommended.  
-+ Examples: MyPregnancyCoach.
++ Examples: Smart Human Dynamics Pregnancy Coach.
 
 ### Temperature Pods
 + Examples: greenTech CORE Sensor.  
