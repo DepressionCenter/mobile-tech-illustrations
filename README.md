@@ -88,7 +88,7 @@ If you find this repository, code or paper useful for your research, please cite
 
 #### Citation Example:
 >_Mongefranco, Gabriel. Mobile Technologies for Research: Illustrations. University of Michigan. Software. https://github.com/DepressionCenter/mobile-tech-illustrations_  
-​​​​​​​     _DOI: [DOI Pending](https://doi.org/)_
+​​​​​​​     _DOI: [10.5281/zenodo.18165506](https://doi.org/10.5281/zenodo.18165506)_
 
 ----
 
