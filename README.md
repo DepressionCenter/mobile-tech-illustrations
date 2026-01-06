@@ -86,6 +86,10 @@ Free Documentation License". If not, see <https://www.gnu.org/licenses/fdl-1.3-s
 ## Citation
 If you find this repository, code or paper useful for your research, please cite it.
 
+#### Citation Example:
+>_Mongefranco, Gabriel. Mobile Technologies for Research: Illustrations. University of Michigan. Software. https://github.com/DepressionCenter/mobile-tech-illustrations_  
+​​​​​​​     _DOI: [DOI Pending](https://doi.org/)_
+
 ----
 
 Copyright © 2024-2026 The Regents of the University of Michigan
