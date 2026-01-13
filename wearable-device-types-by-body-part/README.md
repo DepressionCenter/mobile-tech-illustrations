@@ -262,7 +262,15 @@ Free Documentation License". If not, see <https://www.gnu.org/licenses/fdl-1.3-s
 
 ## Citation
 If you find this repository, code or paper useful for your research, please cite it.
-DOI: [10.5281/zenodo.18165166](https://doi.org/10.5281/zenodo.18165166)
+
+#### Citation Example (This Model):
+>_Mongefranco, Gabriel. Wearable Device Types by Body Part. University of Michigan. Software. https://github.com/DepressionCenter/mobile-tech-illustrations/tree/main/wearable-device-types-by-body-part_  
+​​​​​​​     _DOI: [10.5281/zenodo.18165166](https://doi.org/10.5281/zenodo.18165166)_
+
+
+#### Citation Example (This Repository):
+>_Mongefranco, Gabriel. Mobile Technologies for Research: Illustrations. University of Michigan. Software. https://github.com/DepressionCenter/mobile-tech-illustrations_  
+​​​​​​​     _DOI: [10.5281/zenodo.18165506](https://doi.org/10.5281/zenodo.18165506)_
 
 ----
 
