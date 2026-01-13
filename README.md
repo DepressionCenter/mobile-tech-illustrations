@@ -17,6 +17,10 @@ Diagrams and 3D models showcasing mobile technologies devices used in research, 
 ### 3D Models
 + [Wearable Device Types by Body Part](wearable-device-types-by-body-part/README.md)
 
+### Diagrams
++ [Glucose Monitor and Insulin Delivery Device Integrations](device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
+
+
 ## Documentation
 + Documentation for this project is available at the Eisenberg Family Depression Center's [Knowledge Base](https://michmed.org/efdc-kb).
 

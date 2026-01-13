@@ -1,0 +1,718 @@
+<!--
+This file is part of Mobile Technologies for Research: Illustrations
+GlucoseMonitor-InsulinDeliveryDevice-Integration.html
+Author(s): Gabriel Mongefranco.
+Created: 2026-01-13
+Last Modified: 2026-01-13
+Summary: Glucose Monitor and Insulin Delivery Device Integrations.
+Notes: See README file for documentation and full license information.
+
+Copyright © 2026 The Regents of the University of Michigan
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see <https://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Glucose Monitor and Insulin Delivery Device Integrations</title>
+  <link rel="stylesheet" href="https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/styles/um-style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0; overflow: hidden;}
+	svg { width: 100vw; height: 100vh; display: block; background: #fff; }
+	.label { font-weight: bold; font-family: 'Roboto Mono', 'Menlo', 'Consolas', monospace; font-size: 14px; pointer-events: none; }
+	.link-icon { font-family: sans-serif; }
+
+	/* Header: fixed on top */
+	#intro-header {
+	  position: fixed;
+	  top: 0; left: 0; width: 100vw;
+	  background: rgba(254,255,255,0.94);
+	  z-index: 90;
+	  border-bottom: 1px solid #eaeaea;
+	  display: flex;
+	  align-items: center;
+	  gap: 1.1rem;
+	  padding: 0 0 0 0;
+	  height: 64px;
+	}
+	#intro-header-logo {
+	  height: 40px; width: auto; max-width: 353px; margin-left: 26px; max-width: 220px; max-height: 40px;
+	}
+	#intro-header-texts {
+	  margin-left: 20px;
+	  flex: 1;
+	}
+	#main-title { font-size: 1.4rem; margin-top: 4px; margin-bottom: 0; color: #00274c; }
+	#main-description { margin-top: 5px; margin-bottom: 4px; font-size: 0.9rem; color: #174492; }
+
+	/* Place the search directly below the header */
+	#search-box-container {
+	  position: fixed;
+	  top: 74px;
+	  right: 32px;
+	  z-index: 100;
+	  background: rgba(255,255,255,0.92);
+	  border: 1px solid #ccc;
+	  border-radius: 8px;
+	  padding: 6px 12px;
+	  box-shadow: 0 1px 10px #9999;
+	  display: flex;
+	  align-items: center;
+	}
+
+	/* Zoom control above the footer */
+	#zoom-controls {
+	  position: fixed;
+	  bottom: 54px; /* leave space for footer */
+	  right: 30px;
+	  z-index: 100;
+	  background: rgba(255,255,255,0.80);
+	  border: 1px solid #ccc;
+	  border-radius: 8px;
+	  padding: 7px 18px;
+	  box-shadow: 0 1px 8px #99999939;
+	}
+	#zoom-range {
+	  width: 120px;
+	  accent-color: #00274C;
+	}
+
+	/* Footer */
+	#footer-area {
+	  position: fixed;
+	  left: 0; bottom: 0;
+	  width: 100vw;
+	  font-size: 13px;
+	  color: #888;
+	  background: rgba(254,255,255,0.94);
+	  text-align: center;
+	  z-index: 99;
+	  border-top: 1px solid #eaeaea;
+	  padding: 8px 0 5px;
+	  letter-spacing: 0.07em;
+	}
+	#footer-area a {
+	  color: #174492;
+	  margin-left: 12px;
+	  font-weight: normal;
+	  text-decoration: underline;
+	  font-size: 13px;
+	}
+	#footer-area a:hover {
+	  border-bottom: 2px solid #ffcb05;
+	  color: #feffff;
+	}
+	@media (max-width: 600px) {
+	  #intro-header { flex-direction: column; align-items: flex-start; gap:0; height:auto;}
+	  #intro-header-logo { margin-left:10px; margin-bottom: 5px; height:54px;}
+	  #intro-header-texts { margin-left:0; }
+	  #main-title { font-size:1.21rem;}
+	  #main-description { font-size: 0.96rem;}
+	  #search-box-container { right: 12px; top: 68px;}
+	  #zoom-controls { right:12px; bottom:49px;}
+	  #footer-area { font-size:11px;}
+	}
+	
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="intro-header">
+    <img id="intro-header-logo"
+         src="https://github.com/DepressionCenter/.github/raw/main/images/EFDCLogo_375w.png"
+         alt="Depression Center Logo - Yellow block M with the words 'Eisenberg Family Depression Center' and 'University of Michigan'">
+    <div id="intro-header-texts">
+      <h1 id="main-title">Glucose Monitor and Insulin Delivery Device Integrations</h1>
+      <div id="main-description">
+        Interactive map of integration or compatibility between CGMs, BGMs, and insulin delivery devices (pumps, pens, etc.).
+      </div>
+    </div>
+  </div>
+  <!-- SEARCH always below header -->
+  <div id="search-box-container">
+    <span id="search-box-label">Search:</span>
+    <input type="text" id="search-box" placeholder="Type to highlight…">
+  </div>
+  <!-- Your SVG graph -->
+  <svg></svg>
+  <!-- ZOOM SLIDER always above footer -->
+  <div id="zoom-controls">
+    <label for="zoom-range" style="font-size:13px; font-family:sans-serif; color:#00274C;">Zoom: </label>
+    <input type="range" min="0.2" max="2" step="0.01" value="1" id="zoom-range">
+  </div>
+  <!-- Footer -->
+  <div id="footer-area">
+    <span>&copy; 2026 The Regents of the University of Michigan.</span>
+	<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span><a href="https://github.com/DepressionCenter/mobile-tech-illustrations" target="_top" title="View source code on GitHub">Mobile Technologies for Research: Illustrations</a></span>
+	<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+    <span><a href="https://depressioncenter.org" target="_top" title="Visit depressioncenter.org">Eisenberg Family Depression Center</a></span>
+  </div>
+  
+  <script>
+    const deviceInfo = {
+	  // ------- CGMs --------
+	  FreestyleLibre2Plus: {
+		fullName: "Freestyle Libre 2 Plus",
+		manufacturer: "Abbott",
+		type: "CGM",
+		url: "https://www.freestyle.abbott/us-en/products/libre-2.html",
+		notes: "15 days, on arm, records every minute or every five (with some pumps); compatible with Insulet OmniPod 5."
+	  },
+	  FreestyleLibre3Plus: {
+		fullName: "Freestyle Libre 3 Plus",
+		manufacturer: "Abbott",
+		type: "CGM",
+		url: "https://www.freestyle.abbott/us-en/products/libre-3.html",
+		notes: "15 days, on arm, records every minute (every 5 with certain pumps); compatible with Tandem t:slim X2, Sequel Twiist, and Beta Bionics iLet Bionic Pancreas."
+	  },
+	  DexcomG6: {
+		fullName: "Dexcom G6",
+		manufacturer: "Dexcom",
+		type: "CGM",
+		url: "https://www.dexcom.com/g6",
+		notes: "10.5 days, on abdomen (adults) or buttocks (children); compatible with Tandem t:slim X2, Tandem Mobi, Beta Bionics iLet Bionic Pancreas."
+	  },
+	  DexcomG7: {
+		fullName: "Dexcom G7",
+		manufacturer: "Dexcom",
+		type: "CGM",
+		url: "https://www.dexcom.com/g7",
+		notes: "10.5 days, on arm (adults), abdomen (Europe only), or buttocks (children); records every 5 min; compatible with Tandem t:slim X2, Tandem Mobi, Beta Bionics iLet Bionic Pancreas."
+	  },
+	  DexcomG7_15Day: {
+		fullName: "Dexcom G7 15 Day",
+		manufacturer: "Dexcom",
+		type: "CGM",
+		url: "https://www.dexcom.com/g7",
+		notes: "15.5 days, on arm (adults), abdomen (Europe only), or buttocks (children); records every 5 min; compatible with Beta Bionics iLet Bionic Pancreas, Insulet OmniPod 5, and some smart insulin pens/caps."
+	  },
+	  Instinct: {
+		fullName: "Instinct",
+		manufacturer: "Medtronic",
+		type: "CGM",
+		url: "https://www.medtronic.com/us-en/diabetes/products/cgm.html",
+		notes: "15 days, worn on arm, records every 5 minutes. Based on Libre 3 Plus, compatible only with Medtronic MiniMed 780G and InPen."
+	  },
+	  Guardian3: {
+		fullName: "Guardian Sensor 3",
+		manufacturer: "Medtronic",
+		type: "CGM",
+		url: "https://www.medtronic.com/us-en/diabetes/products/guardian-3-sensor.html",
+		notes: "7 days, worn on abdomen or arm, records every 5 min. For use with Medtronic MiniMed 780G."
+	  },
+	  Guardian4: {
+		fullName: "Guardian Sensor 4",
+		manufacturer: "Medtronic",
+		type: "CGM",
+		url: "https://www.medtronic.com/us-en/diabetes/products/guardian-4-sensor.html",
+		notes: "7 days, worn on abdomen or arm, records every 5 min. For use with Medtronic MiniMed 780G."
+	  },
+	  Simplera: {
+		fullName: "Simplera",
+		manufacturer: "Medtronic",
+		type: "CGM",
+		url: "https://www.medtronic.com/us-en/diabetes/products/simplera.html",
+		notes: "7 days, worn on arm; compatible with InPen smart insulin pens."
+	  },
+	  SimpleraSync: {
+		fullName: "Simplera Sync Sensor",
+		manufacturer: "Medtronic",
+		type: "CGM",
+		url: "https://www.medtronic.com/us-en/diabetes/products/simplera.html",
+		notes: "6 days, worn on arm; for use with MiniMed 780G insulin pumps."
+	  },
+	  Eversense365: {
+		fullName: "Eversense 365",
+		manufacturer: "Senseonics",
+		type: "CGM",
+		url: "https://www.eversensediabetes.com/",
+		notes: "1 year, implantable, rechargeable transmitter on arm, records every 5 min, range 40-400 mg/dl; compatible with Sequel Twiist."
+	  },
+
+	  // ------- BGMs --------
+	  ContourNextOne: {
+		fullName: "Contour NEXT ONE",
+		manufacturer: "Ascensia/Bayer",
+		type: "BGM",
+		url: "https://www.ascensiadiabetes.com/products/contour-next-one/",
+		notes: "Bluetooth-enabled blood glucose meter (glucometer); compatible with Omnipod DASH insulin pumps."
+	  },
+	  AccuChekGuideLink: {
+		fullName: "Accu-Chek Guide Link",
+		manufacturer: "Roche",
+		type: "BGM",
+		url: "https://www.accu-chek.com/products/meters/guide-link",
+		notes: "Bluetooth-enabled blood glucose meter (glucometer); compatible with Medtronic MiniMed insulin pumps."
+	  },
+	  FSLibre2Receiver: {
+		fullName: "Freestyle Libre 2 Receiver",
+		manufacturer: "Abbott",
+		type: "BGM",
+		url: "https://www.freestyle.abbott/uk-en/products/libre-2",
+		notes: "Receiver with built-in blood glucose meter using Precision Neo strips."
+	  },
+	  FSLibre3Receiver: {
+		fullName: "Freestyle Libre 3 Receiver",
+		manufacturer: "Abbott",
+		type: "BGM",
+		url: "https://www.freestyle.abbott/uk-en/products/libre-3",
+		notes: "Receiver with built-in blood glucose meter using Precision Neo strips."
+	  },
+
+	  // ------- Insulin Pumps --------
+	  Omnipod5: {
+		fullName: "Omnipod 5",
+		manufacturer: "Insulet",
+		type: "Insulin Pump",
+		url: "https://www.omnipod.com/coverage/omnipod-5",
+		notes: "Tubeless patch insulin pump; hybrid closed-loop; compatible with Freestyle Libre 2 Plus and Dexcom G7 CGMs."
+	  },
+	  OmnipodDASH: {
+		fullName: "Omnipod DASH",
+		manufacturer: "Insulet",
+		type: "Insulin Pump",
+		url: "https://www.omnipod.com/coverage/omnipod-dash",
+		notes: "Tubeless patch pump for open loop (no automation based on CGM values); compatible with BGMs."
+	  },
+	  MiniMed780G: {
+		fullName: "MiniMed 780G",
+		manufacturer: "Medtronic",
+		type: "Insulin Pump",
+		url: "https://www.medtronic.com/us-en/diabetes/products/minimed-780g.html",
+		notes: "Hybrid closed-loop insulin pump; compatible with Instinct, Guardian 3, Guardian 4, Simplera Sync CGMs."
+	  },
+	  Twiist: {
+		fullName: "Twiist",
+		manufacturer: "Sequel Medtech",
+		type: "Insulin Pump",
+		url: "https://www.sequelmedtech.com/twiist",
+		notes: "Hybrid closed-loop insulin pump that uses the Tidepool Loop algorithm; tubed but wearable; compatible with Freestyle Libre 3 Plus and Eversense 365 CGMs."
+	  },
+	  TandemTSlimX2: {
+		fullName: "t:slim X2",
+		manufacturer: "Tandem Diabetes Care",
+		type: "Insulin Pump",
+		url: "https://www.tandemdiabetes.com/products/t-slim-x2-insulin-pump/",
+		notes: "Hybrid closed-loop insulin pump; compatible with Freestyle Libre 3 Plus, Dexcom G6, and Dexcom G7 CGMs."
+	  },
+	  TandemMobi: {
+		fullName: "Mobi",
+		manufacturer: "Tandem Diabetes Care",
+		type: "Insulin Pump",
+		url: "https://www.tandemdiabetes.com/products/tandem-mobi/",
+		notes: "Hybrid closed-loop insulin pump; tubed but wearable; compatible with Dexcom G6 and Dexcom G7 CGMs."
+	  },
+	  iLetBionicPancreas: {
+		fullName: "iLet Bionic Pancreas",
+		manufacturer: "Beta Bionics",
+		type: "Insulin Pump",
+		url: "https://www.betabionics.com/",
+		notes: "Closed-loop insulin pump; compatible with Freestyle Libre 3 Plus, Dexcom G6, and Dexcom G7 CGMs."
+	  },
+
+	  // ------- Smart Insulin Pen --------
+	  InPen: {
+		fullName: "InPen",
+		manufacturer: "Medtronic",
+		type: "Smart Insulin Pen",
+		url: "https://www.medtronic.com/us-en/diabetes/products/inpen-smart-insulin-pen.html",
+		notes: "Bluetooth-enabled smart insulin pen; compatible with Instinct and Simplera CGMs."
+	  }
+	};
+
+    // --- Links (compatibility) ---
+    const links = [
+      { source: "DexcomG6", target: "Omnipod5" },
+      { source: "DexcomG7", target: "Omnipod5" },
+      { source: "DexcomG7_15Day", target: "Omnipod5" },
+      { source: "FreestyleLibre2Plus", target: "Omnipod5" },
+      { source: "ContourNextOne", target: "OmnipodDASH" },
+      { source: "Simplera", target: "InPen" },
+      { source: "Instinct", target: "InPen" },
+      { source: "Instinct", target: "MiniMed780G" },
+      { source: "SimpleraSync", target: "MiniMed780G" },
+      { source: "Guardian3", target: "MiniMed780G" },
+      { source: "Guardian4", target: "MiniMed780G" },
+      { source: "AccuChekGuideLink", target: "MiniMed780G" },
+      { source: "FSLibre2Receiver", target: "FreestyleLibre2Plus" },
+      { source: "FSLibre3Receiver", target: "FreestyleLibre3Plus" },
+      { source: "Eversense365", target: "Twiist" },
+      { source: "FreestyleLibre3Plus", target: "Twiist" },
+      { source: "FreestyleLibre3Plus", target: "iLetBionicPancreas" },
+      { source: "DexcomG6", target: "iLetBionicPancreas" },
+      { source: "DexcomG7", target: "iLetBionicPancreas" },
+      { source: "DexcomG7_15Day", target: "iLetBionicPancreas" },
+      { source: "FreestyleLibre3Plus", target: "TandemTSlimX2" },
+      { source: "DexcomG6", target: "TandemTSlimX2" },
+      { source: "DexcomG7", target: "TandemTSlimX2" },
+      { source: "DexcomG6", target: "TandemMobi" },
+      { source: "DexcomG7", target: "TandemMobi" }
+    ];
+
+    const nodeIds = new Set(links.flatMap(l => [l.source, l.target]));
+    const nodes = Array.from(nodeIds).map(id => ({ id, ...deviceInfo[id] }));
+
+    const colors = {
+      CGM: "#00274C",      // Michigan dark blue
+      BGM: "#0066B1",      // Michigan blue
+      "Insulin Pump": "#FFCB05",     // Maize yellow
+      "Smart Insulin Pen": "#FFF275",      // Lighter maize yellow
+      other: "#CCCCCC"
+    };
+
+    function nodeColor(node) {
+      return colors[node.type] ?? colors.other;
+    }
+	
+    function labelColor(node) {
+      if (node.type === "CGM" || node.type === "BGM") return "#FFF";
+      if (node.type === "Insulin Pump" || node.type === "Smart Insulin Pen") return "#00274C";
+      return "#333";
+    }
+	
+	function deviceEmoji(type) {
+	  switch(type) {
+		case "CGM": return "📡";
+		case "BGM": return "🩸";
+		case "Insulin Pump": return "🤖";
+		case "Smart Insulin Pen": return "🖊️";
+		default: return "🖲️"; // generic sensor icon
+	  }
+	}
+	
+    function measureText(text, fontSize=14) {
+      return {
+        width: Math.max(112, text.length * (fontSize * 0.55)),
+        height: Math.max(48, (fontSize + 16) * 1.5)
+      };
+    }
+
+    nodes.forEach(d => {
+      const size = measureText(d.fullName + " (" + d.type + ")", 14);
+      d.boxWidth = size.width + (d.url ? 34 : 0); // Room for icon
+      d.boxHeight = Math.max(30, size.height + 8);
+    });
+
+    // --- Connection map for highlights ---
+    const connectionMap = {};
+    nodes.forEach(node => connectionMap[node.id] = new Set());
+    links.forEach(link => {
+      if (connectionMap[link.source]) connectionMap[link.source].add(link.target);
+      if (connectionMap[link.target]) connectionMap[link.target].add(link.source);
+    });
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const svg = d3.select('svg')
+      .attr('width', width)
+      .attr('height', height);
+    const container = svg.append("g");
+
+    let currentZoom = 1;
+    const zoomSlider = document.getElementById("zoom-range");
+    const zoomBehavior = d3.zoom()
+      .scaleExtent([0.4, 3.0])
+      .on("zoom", (event) => {
+        container.attr("transform", event.transform);
+        currentZoom = event.transform.k;
+        zoomSlider.value = currentZoom.toFixed(2);
+      });
+
+    const initialZoom = 0.7;
+    const svgCenterX = width / 2;
+    const svgCenterY = height / 2;
+    svg.call(zoomBehavior)
+       .call(
+          zoomBehavior.transform,
+          d3.zoomIdentity
+            .translate(svgCenterX * (1 - initialZoom), svgCenterY * (1 - initialZoom))
+            .scale(initialZoom)
+       );
+    zoomSlider.addEventListener("input", function() {
+      const zoomLevel = parseFloat(this.value);
+      svg.transition().duration(150).call(zoomBehavior.scaleTo, zoomLevel);
+    });
+    svg.on("dblclick", function() {
+      svg.transition().duration(500).call(zoomBehavior.transform, d3.zoomIdentity.scale(1));
+      zoomSlider.value = "1";
+      clearHighlights();
+    });
+    svg.on("click", function(event) {
+      if (event.target.nodeName === "svg") {
+        clearHighlights();
+      }
+    });
+
+    // --- D3 force setup ---
+    const simulation = d3.forceSimulation(nodes)
+      .force("link", d3.forceLink(links).id(d => d.id).distance(130))
+      .force("charge", d3.forceManyBody().strength(-250))
+      .force("x", d3.forceX(width / 2).strength(0.09))
+      .force("y", d3.forceY(height / 2).strength(0.09))
+      .force("collision", d3.forceCollide().radius(d => Math.max(d.boxWidth, d.boxHeight)/2 + 18).strength(1.1))
+      .force("center", d3.forceCenter(width / 2, height / 2));
+
+    const link = container.append("g")
+      .attr("stroke", "#999")
+      .attr("stroke-opacity", 0.7)
+      .selectAll("line")
+      .data(links)
+      .join("line")
+      .attr("stroke-width", 2);
+
+    const node = container.append("g")
+      .selectAll("rect")
+      .data(nodes)
+      .join("rect")
+      .attr("rx", 14)
+      .attr("ry", 14)
+      .attr("fill", d => nodeColor(d))
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 2)
+      .style("cursor", "pointer")
+      .call(drag(simulation))
+      .on("click", function(event, d) {
+        event.stopPropagation();
+        highlightConnected(d.id);
+      });
+
+    // Create label group to hold emoji, name, manufacturer and icon
+	const label = container.append("g")
+	  .selectAll("g")
+	  .data(nodes)
+	  .join("g")
+	  .attr("class", "label-group");
+
+	// Device type emoji/icon
+	label.append("text")
+	  .attr("class", "type-emoji")
+	  .text(d => deviceEmoji(d.type))
+	  .attr("font-size", 18)
+	  .attr("x", d => -d.boxWidth/2 + 4)
+	  .attr("y", 3);
+
+	// Device name (first line)
+	label.append("text")
+	  .attr("class", "label")
+	  .text(d => d.fullName + " (" + d.type + ")")
+	  .attr("font-size", 14)
+	  .attr("text-anchor", "start")
+	  .attr("fill", d => labelColor(d))
+	  .attr("x", d => -d.boxWidth/2 + 30)   // 26px right of emoji/icon
+	  .attr("y", 3);
+
+	// Manufacturer (second line)
+	label.append("text")
+	  .attr("class", "manufacturer")
+	  .text(d => d.manufacturer)
+	  .attr("font-size", 14)
+	  .attr("text-anchor", "start")
+	  .attr("fill", d => labelColor(d))
+	  .attr("x", d => -d.boxWidth/2 + 30)   // Align left with device name
+	  .attr("y", 20);                       // Display below device name
+
+	// Link icon (right side, hidden by default)
+	label.append("text")
+	  .attr("class", "link-icon")
+	  .text(d => d.url ? "ℹ️" : "")
+	  .attr("font-size", 18)
+	  .attr("cursor", "pointer")
+	  .attr("x", d => measureText(d.fullName + " (" + d.type + ")", 14).width/2 + 22)
+	  .attr("y", 3)
+	  .style("opacity", 0) // hidden by default
+	  .on("click", function(event, d) {
+		if (d.url) window.open(d.url, "_blank");
+		event.stopPropagation();
+	  });
+
+    // Tooltip for each node:
+    node.append("title")
+      .text(d => {
+        let lines = [
+          "Device name: " + d.fullName,
+          "Device Type: " + d.type,
+		  "Manufacturer: " + d.manufacturer
+        ];
+        if (d.notes) lines.push("\n"+d.notes);
+        return lines.join('\n');
+      });
+	  
+	// Tooltip for each link icon:
+    label.append("title")
+      .text(d => {
+        let lines = [
+		  "(Click to open device web page) \n",
+          "Device name: " + d.fullName,
+          "Device Type: " + d.type,
+		  "Manufacturer: " + d.manufacturer
+        ];
+        if (d.notes) lines.push("\n"+d.notes);
+        return lines.join('\n');
+      });
+
+    simulation.on("tick", () => {
+      link
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+
+      node
+        .attr("x", d => d.x - d.boxWidth / 2)
+        .attr("y", d => d.y - d.boxHeight / 2)
+        .attr("width", d => d.boxWidth)
+        .attr("height", d => d.boxHeight);
+
+      label
+        .attr("transform", d => `translate(${d.x}, ${d.y})`);
+    });
+
+    // --- drag handler ---
+    function drag(simulation) {
+      function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+      }
+      function dragged(event, d) {
+        d.fx = event.x; d.fy = event.y;
+      }
+      function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null; d.fy = null;
+      }
+      return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
+    }
+
+    function highlightConnected(nodeId) {
+	  const connected = new Set([nodeId, ...connectionMap[nodeId]]);
+	  node.attr("stroke", d => connected.has(d.id) ? "#f77474" : "#fff")
+		  .attr("stroke-width", d => connected.has(d.id) ? 5 : 2);
+
+	  label.selectAll(".label") // <-- only device name
+		.attr("font-weight", d => connected.has(d.id) ? "bold" : "normal")
+		.style("opacity", 1);   // always visible
+
+	  label.selectAll(".link-icon") // <-- only the icon!
+		.style("opacity", d => connected.has(d.id) && d.url ? 1 : 0); // show icon just for highlighted node(s) with url
+
+	  link.attr("stroke", l =>
+			(connected.has(l.source.id) && connected.has(l.target.id)) ? "#f77474" : "#999")
+		  .attr("stroke-width", l =>
+			(connected.has(l.source.id) && connected.has(l.target.id)) ? 4 : 2)
+		  .attr("stroke-opacity", l =>
+			(connected.has(l.source.id) && connected.has(l.target.id)) ? 1 : 0.7);
+	}
+
+	function clearHighlights() {
+	  node.attr("stroke", "#fff").attr("stroke-width", 2);
+	  label.selectAll(".label").attr("font-weight", "bold").style("opacity", 1);  // always visible!
+	  label.selectAll(".link-icon").style("opacity", 0); // hide all icons
+	  link.attr("stroke", "#999").attr("stroke-width", 2).attr("stroke-opacity", 0.7);
+	  stopSparkle();
+	}
+
+    // --- Search & Sparkle ---
+	let sparkleInterval = null;
+	let sparkleNodes = [];
+
+	// SEARCH: matches fullName, type, manufacturer (case-insensitive)
+	function getSearchMatches(str) {
+	  const lcStr = str.toLowerCase();
+	  return nodes.filter(d =>
+		d.fullName.toLowerCase().includes(lcStr) ||
+		d.type.toLowerCase().includes(lcStr) ||
+		d.manufacturer.toLowerCase().includes(lcStr)
+	  ).map(d => d.id);
+	}
+
+	function startSparkle(nodeIds) {
+	  stopSparkle();
+	  sparkleNodes = nodeIds;
+	  let cycle = 0;
+	  const sparkleColors = ["#FFCB05", "#00274C", "#f77474", "#6BCBFF"];
+	  sparkleInterval = setInterval(() => {
+		node.each(function(d) {
+		  if (nodeIds.includes(d.id)) {
+			d3.select(this)
+			  .attr("stroke", sparkleColors[cycle % sparkleColors.length])
+			  .attr("stroke-width", 7);
+		  }
+		});
+		cycle++;
+	  }, 200);
+	}
+
+	function stopSparkle() {
+	  if (sparkleInterval) {
+		clearInterval(sparkleInterval);
+		sparkleInterval = null;
+	  }
+	  node.each(function(d) {
+		d3.select(this).attr("stroke", "#fff").attr("stroke-width", 2);
+	  });
+	}
+
+	const searchBox = document.getElementById('search-box');
+
+	// Input: sparkle on ≥2 chars, all fields
+	searchBox.addEventListener('input', function () {
+	  const str = this.value.trim();
+	  if (str.length < 2) {
+		stopSparkle();
+		return;
+	  }
+	  const matches = getSearchMatches(str);
+	  if (matches.length > 0) {
+		startSparkle(matches);
+	  } else {
+		stopSparkle();
+	  }
+	});
+
+	// Blur: stop sparkle
+	//searchBox.addEventListener('blur', function () {
+	//  stopSparkle();
+	//});
+
+	// Focus: if 2+ chars present, restart sparkle
+	searchBox.addEventListener('focus', function () {
+	  const str = this.value.trim();
+	  if (str.length >= 2) {
+		const matches = getSearchMatches(str);
+		if (matches.length > 0) {
+		  startSparkle(matches);
+		} else {
+		  stopSparkle();
+		}
+	  }
+	});
+
+	// Escape: blur and stop sparkle
+	searchBox.addEventListener('keydown', function(e) {
+	  if (e.key === 'Escape') {
+		this.blur();
+		stopSparkle();
+	  }
+	});
+
+	svg.on("click.sparkle", function(event) {
+	  if (event.target.nodeName === "svg") stopSparkle();
+	});
+	svg.on("dblclick.sparkle", function(event) {
+	  stopSparkle();
+	});
+  </script>
+</body>
+</html>
