@@ -5,6 +5,7 @@
 ## Description
 Diagrams and 3D models showcasing mobile technologies devices used in research, such as wearables, nearables, intermittent wearables, and smartphone sensors.
 
+[<img src="ProjectPreview.png" title="Preview" alt="Example / Preview" style="width: 720px; height: auto;" />](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/README.md)
 
 
 ## Quick Start Guide
