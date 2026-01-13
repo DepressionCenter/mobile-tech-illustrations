@@ -5,7 +5,7 @@
 ## Description
 Interactive maps of integration/compatibility between wearables, nearables, and other mobile devices.
 
-[<img src="DeviceIntegrationDiagramsPreview.png" title="Preview" alt="Example / Preview" />](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/device-integration-diagrams/README.md)
+[<img src="DeviceIntegrationDiagramsPreview.png" title="Preview" alt="Example / Preview" style="width: 720px; height: auto;" />](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/device-integration-diagrams/README.md)
 
 
 
@@ -20,7 +20,7 @@ Interactive maps of integration/compatibility between wearables, nearables, and 
 ### Glucose Monitor and Insulin Delivery Device Integrations
 Interactive map of integration or compatibility between CGMs, BGMs, and insulin delivery devices (pumps, pens, etc.).
 
-[<img src="GlucoseMonitor-InsulinDeliveryDevice-Integration-Preview.png" title="Preview" alt="Example / Preview" />](https://depressioncenter.github.io/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
+[<img src="GlucoseMonitor-InsulinDeliveryDevice-Integration-Preview.png" title="Preview" alt="Example / Preview" style="width: 480px; height: auto;" target="_blank" />](https://depressioncenter.github.io/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
 
 [View Live](https://depressioncenter.github.io/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)  |  [View Code](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
 
@@ -28,7 +28,7 @@ Interactive map of integration or compatibility between CGMs, BGMs, and insulin 
 
 ## Additional Resources
 + [Mobile Technologies for Research: Illustrations (Main Page)](https://github.com/DepressionCenter/mobile-tech-illustrations)
-+ [d3.js:](https://d3js.org/) JavaScript data visualization library.
++ [D3.js:](https://d3js.org/) JavaScript data visualization library.
 
 
 
@@ -53,7 +53,7 @@ If you need assistance identifying a contact person, email the EFDC's Mobile Tec
 
 
 #### This work is based in part on the following projects, libraries and/or studies:
-+ [d3.js JavaScript data visualization library](https://d3js.org/)
++ [D3.js JavaScript data visualization library](https://d3js.org/)
 + [EFDC TDX Knowldge Base Templates](https://github.com/DepressionCenter/EFDC-TDX-KB)
 
 
