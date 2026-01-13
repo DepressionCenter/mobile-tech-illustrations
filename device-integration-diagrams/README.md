@@ -1,35 +1,35 @@
 ![Depression Center Logo](https://github.com/DepressionCenter/.github/blob/main/images/EFDCLogo_375w.png "depressioncenter.org")
 
-# Mobile Technologies for Research: Illustrations
+# Device Integration Diagrams
 
 ## Description
-Diagrams and 3D models showcasing mobile technologies devices used in research, such as wearables, nearables, intermittent wearables, and smartphone sensors.
+Interactive maps of integration/compatibility between wearables, nearables, and other mobile devices.
+
+[<img src="DeviceIntegrationDiagramsPreview.png" title="Preview" alt="Example / Preview" />](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/device-integration-diagrams/README.md)
 
 
 
 ## Quick Start Guide
-+ Click on an illustration from the list below.
-+ Each illustration contains a README file with a preview and detailed description, a source directory with the original files, and an output directory with ready-to-view exports.
-+ Whenever possible, we use open source or defacto industry-standard formats for interoperability.
++ See the list of available diagrams below, and click the "View Live" link to open it.
++ To edit, download the corresponding diagram file. Some files, such as HTML/JavaScript, will have a section with input parameters that can be configured to change the diagram.
 
 
-## List of Illustrations
 
-### 3D Models
-+ [Wearable Device Types by Body Part](wearable-device-types-by-body-part/README.md). A human body annotated with common types of consumer-grade wearables used in research. This 3D model has clickable areas on different body parts that display the device types that can be worn on that area.
+## List of Available Device Integration Diagrams
 
-### Diagrams
-+ [Device Integration Diagrams](device-integration-diagrams/README.md). Interactive maps of integration/compatibility between wearables, nearables, and other mobile devices.
+### Glucose Monitor and Insulin Delivery Device Integrations
+Interactive map of integration or compatibility between CGMs, BGMs, and insulin delivery devices (pumps, pens, etc.).
 
+[<img src="GlucoseMonitor-InsulinDeliveryDevice-Integration-Preview.png" title="Preview" alt="Example / Preview" />](https://depressioncenter.github.io/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
 
-## Documentation
-+ Documentation for this project is available at the Eisenberg Family Depression Center's [Knowledge Base](https://michmed.org/efdc-kb).
-
+[View Live](https://depressioncenter.github.io/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)  |  [View Code](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
 
 
 
 ## Additional Resources
-+ 3D models are published on Sketchfab under the [Mobile Technologies for Research Illustrations](https://skfb.ly/prVqv) collection.
++ [Mobile Technologies for Research: Illustrations (Main Page)](https://github.com/DepressionCenter/mobile-tech-illustrations)
++ [d3.js:](https://d3js.org/) JavaScript data visualization library.
+
 
 
 
@@ -53,7 +53,8 @@ If you need assistance identifying a contact person, email the EFDC's Mobile Tec
 
 
 #### This work is based in part on the following projects, libraries and/or studies:
-+ See individual illustrations for specifics and attribution notices.
++ [d3.js JavaScript data visualization library](https://d3js.org/)
++ [EFDC TDX Knowldge Base Templates](https://github.com/DepressionCenter/EFDC-TDX-KB)
 
 
 
