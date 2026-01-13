@@ -265,7 +265,7 @@ If you find this repository, code or paper useful for your research, please cite
 
 #### Citation Example (This Model):
 >_Mongefranco, Gabriel. Wearable Device Types by Body Part. University of Michigan. Software. https://github.com/DepressionCenter/mobile-tech-illustrations/tree/main/wearable-device-types-by-body-part_  
-​​​​​​​     _DOI: [10.5281/zenodo.18165166](https://doi.org/10.5281/zenodo.18165166)_
+​​​​​​​     _DOI: [10.5281/zenodo.18165165](https://doi.org/10.5281/zenodo.18165165)_
 
 
 #### Citation Example (This Repository):
