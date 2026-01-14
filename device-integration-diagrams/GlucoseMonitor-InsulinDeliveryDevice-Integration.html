@@ -331,11 +331,11 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 		notes: "Bluetooth-enabled smart insulin pen; compatible with Instinct and Simplera CGMs."
 	  },
 	  
-	  // ------- Mobile Data Platforms --------
+	  // ------- Study Management / Mobile Data Platforms --------
 	  TidepoolPlus: {
 		productName: "Tidepool+",
 		manufacturer: "Tidepool",
-		productType: "Mobile Data Platform",
+		productType: "Study Management Platform",
 		url: "https://www.tidepool.org/providers/tidepoolplus",
 		notes: "Diabetes data aggregation platform."
 	},
@@ -375,7 +375,27 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       { source: "DexcomG6", target: "TandemTSlimX2" },
       { source: "DexcomG7", target: "TandemTSlimX2" },
       { source: "DexcomG6", target: "TandemMobi" },
-      { source: "DexcomG7", target: "TandemMobi" }
+      { source: "DexcomG7", target: "TandemMobi" },
+	  
+	  
+	  { source: "DexcomG6", target: "TidepoolPlus" },
+      { source: "DexcomG7", target: "TidepoolPlus" },
+      { source: "DexcomG7_15Day", target: "TidepoolPlus" },
+      { source: "FreestyleLibre2Plus", target: "TidepoolPlus" },
+	  { source: "FreestyleLibre3Plus", target: "TidepoolPlus" },
+      { source: "Twiist", target: "TidepoolPlus" },
+	  
+	  { source: "DexcomG6", target: "Glooko" },
+      { source: "DexcomG7", target: "Glooko" },
+      { source: "DexcomG7_15Day", target: "Glooko" },
+      { source: "FreestyleLibre2Plus", target: "Glooko" },
+	  { source: "FreestyleLibre3Plus", target: "Glooko" },
+      { source: "Eversense365", target: "Glooko" },
+	  { source: "ContourNextOne", target: "Glooko" },
+      { source: "AccuChekGuideLink", target: "Glooko" },
+      { source: "Omnipod5", target: "Glooko" },
+      { source: "OmnipodDASH", target: "Glooko" }
+	  
     ];
 
     const nodeIds = new Set(links.flatMap(l => [l.source, l.target]));
@@ -386,7 +406,8 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       BGM: "#0066B1",      // Michigan blue
       "Insulin Pump": "#FFCB05",     // Maize yellow
       "Smart Insulin Pen": "#FFF275",      // Lighter maize yellow
-      other: "#CCCCCC"
+	  "Study Management Platform": "#DCDCDC",	// Light gray
+      other: "#C2C2C2"
     };
 
     function nodeColor(node) {
@@ -395,7 +416,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	
     function labelColor(node) {
       if (node.productType === "CGM" || node.productType === "BGM") return "#FFF";
-      if (node.productType === "Insulin Pump" || node.productType === "Smart Insulin Pen") return "#00274C";
+      if (node.productType === "Insulin Pump" || node.productType === "Smart Insulin Pen" || node.productType === "Study Management Platform") return "#00274C";
       return "#333";
     }
 	
@@ -405,6 +426,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 		case "BGM": return "🩸";
 		case "Insulin Pump": return "🤖";
 		case "Smart Insulin Pen": return "🖊️";
+		case "Study Management Platform": return "👩‍🔬";
 		default: return "🖲️"; // generic sensor icon
 	  }
 	}
@@ -447,7 +469,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
         zoomSlider.value = currentZoom.toFixed(2);
       });
 
-    const initialZoom = 0.7;
+    const initialZoom = 0.68;
     const svgCenterX = width / 2;
     const svgCenterY = height / 2;
     svg.call(zoomBehavior)
@@ -475,10 +497,10 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
     // --- D3 force setup ---
     const simulation = d3.forceSimulation(nodes)
       .force("link", d3.forceLink(links).id(d => d.id).distance(130))
-      .force("charge", d3.forceManyBody().strength(-250))
+      .force("charge", d3.forceManyBody().strength(-190))
       .force("x", d3.forceX(width / 2).strength(0.09))
       .force("y", d3.forceY(height / 2).strength(0.09))
-      .force("collision", d3.forceCollide().radius(d => Math.max(d.boxWidth, d.boxHeight)/2 + 18).strength(1.1))
+      .force("collision", d3.forceCollide().radius(d => Math.max(d.boxWidth, d.boxHeight)/2 + 12).strength(0.7))
       .force("center", d3.forceCenter(width / 2, height / 2));
 
     const link = container.append("g")
