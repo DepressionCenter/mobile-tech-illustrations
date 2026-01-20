@@ -20,9 +20,9 @@ Interactive maps of integration/compatibility between wearables, nearables, and 
 ### Glucose Monitor and Insulin Delivery Device Integrations
 Interactive map of integration or compatibility between CGMs, BGMs, and insulin delivery devices (pumps, pens, etc.).
 
-[<img src="GlucoseMonitor-InsulinDeliveryDevice-Integration-Preview.png" title="Preview" alt="Example / Preview" style="width: 480px; height: auto;" target="_blank" />](https://depressioncenter.github.io/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
+[<img src="GlucoseMonitor-InsulinDeliveryDevice-Integration-Preview.png" title="Preview" alt="Example / Preview" style="width: 480px; height: auto;" target="_blank" />](https://code.depressioncenter.org/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
 
-[View Live](https://depressioncenter.github.io/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)  |  [View Code](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
+[View Live](https://code.depressioncenter.org/mobile-tech-illustrations/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)  |  [View Code](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/device-integration-diagrams/GlucoseMonitor-InsulinDeliveryDevice-Integration.html)
 
 
 
