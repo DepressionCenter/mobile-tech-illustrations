@@ -112,6 +112,18 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	  border-bottom: 2px solid #ffcb05;
 	  color: #feffff;
 	}
+	
+	.info-tooltip a {
+		color:#174492;
+		text-decoration:underline;
+		font-size:0.95em;
+	}
+	
+	.info-tooltip a:hover {
+	  border-bottom: 2px solid #ffcb05;
+	  color: #feffff;
+	}
+	
 	@media (max-width: 600px) {
 	  #intro-header { flex-direction: column; align-items: flex-start; gap:0; height:auto;}
 	  #intro-header-logo { margin-left:10px; margin-bottom: 5px; height:54px;}
@@ -160,6 +172,18 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
     <span><a href="https://depressioncenter.org" target="_top" title="Visit the Eisenberg Family Depression Center at depressioncenter.org">Depression Center</a></span>
   </div>
   
+	<!-- Floating box used to display tooltips with device info -->
+	<div id="info-tooltip" style="display: none;
+		position: fixed;
+		min-width: 220px;
+		max-width: 380px;
+		background: #fffbe7;
+		border: 2px solid #00274C;
+		border-radius: 12px;
+		box-shadow: 0 4px 16px #00274c40;
+		padding: 16px 16px 12px 16px;
+		z-index: 9999;
+		font-size:16px;"></div>  
   <script>
     const deviceInfo = {
 	  // ------- CGMs --------
@@ -572,9 +596,9 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	  .attr("y", 3)
 	  .style("opacity", 0) // hidden by default
 	  .on("click", function(event, d) {
-		if (d.url) window.open(d.url, "_blank");
 		event.stopPropagation();
-	  });
+		showInfoBox(d, event); // Show info
+		});
 
     // Tooltip for each node:
     node.append("title")
@@ -590,16 +614,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	  
 	// Tooltip for each link icon:
     label.append("title")
-      .text(d => {
-        let lines = [
-		  "(Click to open device web page) \n",
-          "Device name: " + d.productName,
-          "Device productType: " + d.productType,
-		  "Manufacturer: " + d.manufacturer
-        ];
-        if (d.notes) lines.push("\n"+d.notes);
-        return lines.join('\n');
-      });
+      .text("Click to view device details");
 
     simulation.on("tick", () => {
       link
@@ -751,6 +766,60 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	});
 	svg.on("dblclick.sparkle", function(event) {
 	  stopSparkle();
+	});
+	
+	
+	
+	const infoBox = document.getElementById("info-tooltip");
+
+	// Helper: format device info
+	function formatDeviceInfo(d) {
+	  let html = `<strong>${d.productName}</strong> <span style="font-size:1em; color:#00274c;">(${d.productType})</span><br>`;
+	  html += `<em>Manufacturer:</em> ${d.manufacturer}<br>`;
+	  if (d.notes) html += `<div style="margin-top:6px; color:#555;">${d.notes}</div>`;
+	  if (d.url) html += `<br><a href="${d.url}" target="_blank">More Info<small ><sup>&nbsp;↗️</sup></small></a>`;
+	  return html;
+	}
+
+	// Show info box, position near click, adjust for mobile/desktop
+	function showInfoBox(d, evt) {
+	  infoBox.innerHTML = formatDeviceInfo(d);
+	  infoBox.style.display = "block";
+	  // Position near click or node center (for mobile, evt can be undefined sometimes)
+	  let x = 0, y = 0;
+	  if (evt && evt.clientX && evt.clientY) {
+		x = evt.clientX;
+		y = evt.clientY;
+	  } else if (d.x && d.y) {
+		// project node's SVG coordinates to screen coordinates
+		let p = d3.zoomTransform(svg.node());
+		x = d.x * p.k + p.x;
+		y = d.y * p.k + p.y;
+	  } else {
+		x = window.innerWidth/2 - 140;
+		y = window.innerHeight/2 - 80;
+	  }
+	  // Try not to overflow bottom/right
+	  setTimeout(() => {
+		const w = infoBox.offsetWidth, h = infoBox.offsetHeight;
+		let left = Math.min(x + 20, window.innerWidth - w - 16);
+		let top = Math.min(y - h/2, window.innerHeight - h - 12);
+		top = Math.max(64, top); // Don't go under header
+		infoBox.style.left = left + "px";
+		infoBox.style.top = top + "px";
+	  });
+	  infoBox.setAttribute('aria-live', 'assertive');
+	  infoBox.setAttribute('role', 'dialog');
+	}
+	// Hide
+	function hideInfoBox() { infoBox.style.display = "none"; infoBox.innerHTML = ""; }
+
+	// Hide on outside click, or ESC key
+	window.addEventListener("pointerdown", function (e) {
+	  if (!infoBox.contains(e.target)) hideInfoBox();
+	});
+	window.addEventListener("keydown", function (e) {
+	  if (e.key === "Escape") hideInfoBox();
 	});
   </script>
 </body>
