@@ -1,39 +1,33 @@
 ![Depression Center Logo](https://github.com/DepressionCenter/.github/blob/main/images/EFDCLogo_375w.png "depressioncenter.org")
 
-# Mobile Technologies for Research: Illustrations
+# 2024 MeTRIC Symposium Mobile Device Gallery
 
 ## Description
-Diagrams and 3D models showcasing mobile technologies devices used in research, such as wearables, nearables, intermittent wearables, and smartphone sensors.
+Interactive Sway presentation showcasing wearables, nearables and other mobile tech. These devices were displayed in real life at the [2024 MeTRIC Symposium](https://metric.umich.edu).
 
-[<img src="ProjectPreview.png" title="Preview" alt="Example / Preview" style="width: 720px; height: auto;" />](https://github.com/DepressionCenter/mobile-tech-illustrations/blob/main/README.md)
+[<img src="MobileDeviceGallery-Preview.png" title="Preview" alt="Example / Preview" style="width: 720px; height: auto;" />](https://michmed.org/DnR5V)
+
 
 
 ## Quick Start Guide
-+ Click on an illustration from the list below.
-+ Each illustration contains a README file with a preview and detailed description, a source directory with the original files, and an output directory with ready-to-view exports.
-+ Whenever possible, we use open source or defacto industry-standard formats for interoperability.
++ To see this example live, visit: https://michmed.org/DnR5V
++ To edit, login to Microsoft Sway with your Michigan Medicine (level-2) login, open https://michmed.org/DnR5V, click the gear icon and click Duplicate.
++ Unfortunately, Sway does not currently allow exporting and importing an animation, so a Michigan Medicine account is required to copy it. However, you can download a PDF version here: https://teamdynamix.umich.edu/TDClient/210/DepressionCenter/KB/ArticleDet?ID=12962
 
 
-## List of Illustrations
 
-### 3D Models
-+ [Wearable Device Types by Body Part](wearable-device-types-by-body-part/README.md). A human body annotated with common types of consumer-grade wearables used in research. This 3D model has clickable areas on different body parts that display the device types that can be worn on that area.
+## View Live / Donwload
 
-### Diagrams
-+ [Device Integration Diagrams](device-integration-diagrams/README.md). Interactive maps of integration/compatibility between wearables, nearables, and other mobile devices.
+[<img src="GlucoseMonitor-InsulinDeliveryDevice-Integration-Preview.png" title="Preview" alt="Example / Preview" style="width: 480px; height: auto;" target="_blank" />](https://michmed.org/DnR5V)
 
-### Animations
-+ [2024 MeTRIC Symposium Mobile Device Gallery](mobile-device-gallery/README.md). Interactive Sway presentation showcasing wearables, nearables and other mobile tech.
-
-
-## Documentation
-+ Documentation for this project is available at the Eisenberg Family Depression Center's [Knowledge Base](https://michmed.org/efdc-kb).
-
+[View Live](https://michmed.org/DnR5V)  |  [View PDF](https://code.deperessioncenter.org/mobile-tech-illustrations/mobile-device-gallery/2024%20MeTRIC%20Symposium%20Device%20Gallery.pdf)  |  [https://code.deperessioncenter.org/mobile-tech-illustrations/mobile-device-gallery/2024%20MeTRIC%20Symposium%20Device%20Gallery.docx](View Word Version)
 
 
 
 ## Additional Resources
-+ 3D models are published on Sketchfab under the [Mobile Technologies for Research Illustrations](https://skfb.ly/prVqv) collection.
++ [Mobile Technologies for Research: Illustrations (Main Page)](https://github.com/DepressionCenter/mobile-tech-illustrations)
++ [2024 MeTRIC Symposium Device Gallery](https://teamdynamix.umich.edu/TDClient/210/DepressionCenter/KB/ArticleDet?ID=12962)
+
 
 
 
@@ -57,7 +51,7 @@ If you need assistance identifying a contact person, email the EFDC's Mobile Tec
 
 
 #### This work is based in part on the following projects, libraries and/or studies:
-+ See individual illustrations for specifics and attribution notices.
++ Microsoft Sway
 
 
 
