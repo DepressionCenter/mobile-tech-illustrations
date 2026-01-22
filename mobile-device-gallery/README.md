@@ -18,15 +18,15 @@ Interactive Sway presentation showcasing wearables, nearables and other mobile t
 
 ## View Live / Donwload
 
-[<img src="GlucoseMonitor-InsulinDeliveryDevice-Integration-Preview.png" title="Preview" alt="Example / Preview" style="width: 480px; height: auto;" target="_blank" />](https://michmed.org/DnR5V)
+[<img src="MobileDeviceGallery-Preview.png"" title="Preview" alt="Example / Preview" style="width: 480px; height: auto;" target="_blank" />](https://michmed.org/DnR5V)
 
-[View Live](https://michmed.org/DnR5V)  |  [View PDF](https://code.deperessioncenter.org/mobile-tech-illustrations/mobile-device-gallery/2024%20MeTRIC%20Symposium%20Device%20Gallery.pdf)  |  [https://code.deperessioncenter.org/mobile-tech-illustrations/mobile-device-gallery/2024%20MeTRIC%20Symposium%20Device%20Gallery.docx](View Word Version)
+[View Live](https://michmed.org/DnR5V)  |  [View PDF](2024%20MeTRIC%20Symposium%20Device%20Gallery.pdf)  |  [View Word Version)[2024%20MeTRIC%20Symposium%20Device%20Gallery.docx]
 
 
 
 ## Additional Resources
 + [Mobile Technologies for Research: Illustrations (Main Page)](https://github.com/DepressionCenter/mobile-tech-illustrations)
-+ [2024 MeTRIC Symposium Device Gallery](https://teamdynamix.umich.edu/TDClient/210/DepressionCenter/KB/ArticleDet?ID=12962)
++ [2024 MeTRIC Symposium Device Gallery](https://teamdynamix.umich.edu/TDClient/210/DepressionCenter/KB/ArticleDet?ID=12962) (knowledge base article)
 
 
 
