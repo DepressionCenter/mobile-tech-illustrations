@@ -18,9 +18,9 @@ Interactive Sway presentation showcasing wearables, nearables and other mobile t
 
 ## View Live / Donwload
 
-[<img src="MobileDeviceGallery-Preview.png"" title="Preview" alt="Example / Preview" style="width: 480px; height: auto;" target="_blank" />](https://michmed.org/DnR5V)
+[<img src="MobileDeviceGallery-Preview.png" title="Preview" alt="Example / Preview" style="width: 480px; height: auto;" target="_blank" />](https://michmed.org/DnR5V)
 
-[View Live](https://michmed.org/DnR5V)  |  [View PDF](2024%20MeTRIC%20Symposium%20Device%20Gallery.pdf)  |  [View Word Version)[2024%20MeTRIC%20Symposium%20Device%20Gallery.docx]
+[View Live](https://michmed.org/DnR5V)  |  [View PDF](2024%20MeTRIC%20Symposium%20Device%20Gallery.pdf)  |  [View Word Version](2024%20MeTRIC%20Symposium%20Device%20Gallery.docx)
 
 
 
