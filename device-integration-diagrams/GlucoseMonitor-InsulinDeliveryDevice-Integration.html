@@ -504,7 +504,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
         zoomSlider.value = currentZoom.toFixed(2);
       });
 
-    const initialZoom = 0.68;
+    const initialZoom = 0.69;
     const svgCenterX = width / 2;
     const svgCenterY = height / 2;
     svg.call(zoomBehavior)
@@ -514,6 +514,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
             .translate(svgCenterX * (1 - initialZoom), svgCenterY * (1 - initialZoom))
             .scale(initialZoom)
        );
+	zoomSlider.value = initialZoom;
     zoomSlider.addEventListener("input", function() {
       const zoomLevel = parseFloat(this.value);
       svg.transition().duration(150).call(zoomBehavior.scaleTo, zoomLevel);
@@ -559,6 +560,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       .call(drag(simulation))
       .on("click", function(event, d) {
         event.stopPropagation();
+		stopSparkle();
         highlightConnected(d.id);
       });
 
@@ -831,6 +833,31 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	});
 	window.addEventListener("keydown", function (e) {
 	  if (e.key === "Escape") hideInfoBox();
+	});
+	
+	// --- On page load, check for URL ?search=... parameter ---
+	window.addEventListener('DOMContentLoaded', function () {
+	  const params = new URLSearchParams(window.location.search);
+	  const searchParam = params.get("search");
+	  if (searchParam) {
+		// Fill the search box: decode in case of spaces/etc.
+		const searchBox = document.getElementById('search-box');
+		searchBox.value = decodeURIComponent(searchParam);
+
+		// Optionally, focus (optional — comment out if unwanted)
+		// searchBox.focus();
+
+		// Trigger sparkle/highlight if ≥2 chars
+		const str = searchBox.value.trim();
+		if (str.length >= 2) {
+		  const matches = getSearchMatches(str);
+		  if (matches.length > 0) {
+			startSparkle(matches);
+		  } else {
+			stopSparkle();
+		  }
+		}
+	  }
 	});
   </script>
 </body>
