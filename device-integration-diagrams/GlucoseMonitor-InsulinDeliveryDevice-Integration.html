@@ -41,7 +41,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
     html, body { height: 100%; margin: 0; padding: 0; overflow: hidden;}
 	svg { width: 100vw; height: 100vh; display: block; background: #fff; }
 	.label { font-weight: bold; font-family: 'Roboto Mono', 'Menlo', 'Consolas', monospace; font-size: 14px; pointer-events: none; }
-	.link-icon { font-family: sans-serif; }
+
 
 	/* Header: fixed on top */
 	#intro-header {
@@ -124,15 +124,105 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	  color: #feffff;
 	}
 	
-	.info-tooltip a {
-		color:#174492;
-		text-decoration:underline;
-		font-size:0.95em;
+	/* Info tooltip panel */
+	#info-tooltip {
+	  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+	  width: min(400px, calc(100vw - 32px));
+	  overflow: hidden;
+	  padding: 0;
 	}
-	
-	.info-tooltip a:hover {
-	  border-bottom: 2px solid #ffcb05;
-	  color: #feffff;
+	#info-tooltip .itt-close {
+	  position: absolute;
+	  top: 8px; right: 10px;
+	  background: none;
+	  border: 2px solid transparent;
+	  border-radius: 6px;
+	  font-size: 18px;
+	  cursor: pointer;
+	  color: #FFCB05;
+	  padding: 4px 8px;
+	  min-width: 38px; min-height: 38px;
+	  line-height: 1;
+	}
+	#info-tooltip .itt-close:focus {
+	  outline: none;
+	  border-color: #FFCB05;
+	}
+	#info-tooltip .itt-header {
+	  background: #00274C;
+	  padding: 14px 52px 14px 16px;
+	  display: flex;
+	  align-items: center;
+	  gap: 10px;
+	}
+	#info-tooltip .itt-emoji {
+	  font-size: 26px;
+	  flex-shrink: 0;
+	  line-height: 1;
+	}
+	#info-tooltip .itt-title {
+	  color: #FFCB05;
+	  font-size: 1.05em;
+	  font-weight: bold;
+	  font-family: 'Roboto Mono', 'Menlo', 'Consolas', monospace;
+	  line-height: 1.3;
+	}
+	#info-tooltip .itt-body {
+	  padding: 12px 16px 14px;
+	}
+	#info-tooltip .itt-meta {
+	  display: flex;
+	  align-items: center;
+	  gap: 8px;
+	  flex-wrap: wrap;
+	  margin-bottom: 10px;
+	}
+	#info-tooltip .itt-badge {
+	  background: #e8edf3;
+	  color: #00274C;
+	  font-size: 0.78em;
+	  font-weight: bold;
+	  padding: 3px 10px;
+	  border-radius: 20px;
+	  letter-spacing: 0.04em;
+	  white-space: nowrap;
+	  border: 1px solid #b0bfd4;
+	}
+	#info-tooltip .itt-manufacturer {
+	  color: #444;
+	  font-size: 0.92em;
+	  font-weight: 600;
+	}
+	#info-tooltip .itt-notes {
+	  color: #333;
+	  font-size: 0.91em;
+	  line-height: 1.55;
+	  margin-bottom: 12px;
+	  border-top: 1px solid #eee;
+	  padding-top: 10px;
+	}
+	#info-tooltip .itt-link {
+	  display: block;
+	  background: #00274C;
+	  color: #FFCB05;
+	  font-weight: bold;
+	  font-size: 0.97em;
+	  text-decoration: none;
+	  text-align: center;
+	  padding: 11px 16px;
+	  border-radius: 8px;
+	  letter-spacing: 0.04em;
+	  margin-top: 4px;
+	}
+	#info-tooltip .itt-link:hover,
+	#info-tooltip .itt-link:focus {
+	  background: #174492;
+	  color: #FFCB05;
+	  text-decoration: underline;
+	}
+	#info-tooltip .itt-link:focus {
+	  outline: 3px solid #FFCB05;
+	  outline-offset: 2px;
 	}
 	
 	@media (max-width: 600px) {
@@ -184,17 +274,9 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
   </div>
   
 	<!-- Floating box used to display tooltips with device info -->
-	<div id="info-tooltip" style="display: none;
-		position: fixed;
-		min-width: 220px;
-		max-width: 380px;
-		background: #fffbe7;
-		border: 2px solid #00274C;
-		border-radius: 12px;
-		box-shadow: 0 4px 16px #00274c40;
-		padding: 16px 16px 12px 16px;
-		z-index: 9999;
-		font-size:16px;"></div>  
+	<div id="info-tooltip"
+		style="display:none; position:fixed; border:2px solid #00274C; border-radius:14px; box-shadow:0 6px 28px rgba(0,39,76,0.25); background:#fff; z-index:9999;"
+		role="dialog" aria-modal="true" aria-labelledby="info-tooltip-title" tabindex="-1"></div>
   <script>
     const productInfo = {
 	  // ------- CGMs --------
@@ -571,21 +653,22 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       BGM: "#0066B1",      // Michigan blue
       "Insulin Pump or Delivery System": "#FFCB05",     // Maize yellow
       "Smart Insulin Pen or Cap": "#FFF275",      // Lighter maize yellow
-	  "Remote Study Management System": "#DCDCDC",	// Light gray
-	  "Remote Patient Monitoring Service": "#DCDCDC",	// Light gray
-	  "Diabetes Data Management Platform": "#DCDCDC",	// Light gray
-	  "Device and Health Data Aggregator": "#DCDCDC",	// Light gray
-	  "Mobile App (Digital Health)": "#DCDCDC",	// Light gray
-      other: "#C2C2C2"
+	  "Remote Study Management System": "#5A6A7A",	// Dark slate gray
+	  "Remote Patient Monitoring Service": "#F0F2F5",	// Light blue-gray
+	  "Diabetes Data Management Platform": "#F0F2F5",	// Light blue-gray
+	  "Device and Health Data Aggregator": "#F0F2F5",	// Light blue-gray
+	  "Mobile App (Digital Health)": "#F0F2F5",	// Light blue-gray
+      other: "#C8D4E0"
     };
 
     function nodeColor(node) {
-      return colors[node.productType] ?? colors.other;
+      return colors[node.productType] || colors.other;
     }
 	
     function labelColor(node) {
       if (node.productType === "CGM" || node.productType === "BGM") return "#FFF";
-      if (node.productType === "Insulin Pump or Delivery System" || node.productType === "Smart Insulin Pen or Cap" || node.productType === "Remote Study Management System") return "#00274C";
+      if (node.productType === "Remote Study Management System") return "#FFF";
+      if (node.productType === "Insulin Pump or Delivery System" || node.productType === "Smart Insulin Pen or Cap") return "#00274C";
       return "#333";
     }
 	
@@ -643,7 +726,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
         zoomSlider.value = currentZoom.toFixed(2);
       });
 
-    const initialZoom = 0.69;
+    const initialZoom = 0.58;
     const svgCenterX = width / 2;
     const svgCenterY = height / 2;
     svg.call(zoomBehavior)
@@ -669,13 +752,31 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       }
     });
 
+    // Pre-position hub nodes near center before simulation starts
+    nodes.forEach(function(d) {
+      if (d.id === "AppleHealth")    { d.x = width / 2 - 120; d.y = height / 2; }
+      if (d.id === "HealthConnect")  { d.x = width / 2 + 120; d.y = height / 2; }
+    });
+
     // --- D3 force setup ---
     const simulation = d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(d => d.id).distance(130))
-      .force("charge", d3.forceManyBody().strength(-190))
-      .force("x", d3.forceX(width / 2).strength(0.09))
-      .force("y", d3.forceY(height / 2).strength(0.09))
-      .force("collision", d3.forceCollide().radius(d => Math.max(d.boxWidth, d.boxHeight)/2 + 12).strength(0.7))
+      .force("link", d3.forceLink(links).id(d => d.id).distance(110))
+      .force("charge", d3.forceManyBody().strength(-175))
+      .force("x", d3.forceX(function(d) {
+        if (d.id === "AppleHealth")   return width / 2 - 120;
+        if (d.id === "HealthConnect") return width / 2 + 120;
+        return width / 2;
+      }).strength(function(d) {
+        if (d.id === "AppleHealth" || d.id === "HealthConnect") return 0.45;
+        return 0.07;
+      }))
+      .force("y", d3.forceY(function(d) {
+        return height / 2;
+      }).strength(function(d) {
+        if (d.id === "AppleHealth" || d.id === "HealthConnect") return 0.45;
+        return 0.20;
+      }))
+      .force("collision", d3.forceCollide().radius(d => Math.max(d.boxWidth, d.boxHeight)/2 + 10).strength(0.85))
       .force("center", d3.forceCenter(width / 2, height / 2));
 
     const link = container.append("g")
@@ -701,6 +802,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
         event.stopPropagation();
 		stopSparkle();
         highlightConnected(d.id);
+        showInfoBox(d, event);
       });
 
     // Create label group to hold emoji, name, manufacturer and icon
@@ -738,19 +840,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	  .attr("x", d => -d.boxWidth/2 + 30)   // Align left with device name
 	  .attr("y", 20);                       // Display below device name
 
-	// Link icon (right side, hidden by default)
-	label.append("text")
-	  .attr("class", "link-icon")
-	  .text(d => d.url ? "ℹ️" : "")
-	  .attr("font-size", 18)
-	  .attr("cursor", "pointer")
-	  .attr("x", d => measureText(d.productName + " (" + d.productType + ")", 14).width/2 + 22)
-	  .attr("y", 3)
-	  .style("opacity", 0) // hidden by default
-	  .on("click", function(event, d) {
-		event.stopPropagation();
-		showInfoBox(d, event); // Show info
-		});
+	// Info is now shown directly on node click (mobile-friendly)
 
     // Tooltip for each node:
     node.append("title")
@@ -810,8 +900,6 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 		.attr("font-weight", d => connected.has(d.id) ? "bold" : "normal")
 		.style("opacity", 1);   // always visible
 
-	  label.selectAll(".link-icon") // <-- only the icon!
-		.style("opacity", d => connected.has(d.id) && d.url ? 1 : 0); // show icon just for highlighted node(s) with url
 
 	  link.attr("stroke", l =>
 			(connected.has(l.source.id) && connected.has(l.target.id)) ? "#f77474" : "#999")
@@ -824,7 +912,6 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	function clearHighlights() {
 	  node.attr("stroke", "#fff").attr("stroke-width", 2);
 	  label.selectAll(".label").attr("font-weight", "bold").style("opacity", 1);  // always visible!
-	  label.selectAll(".link-icon").style("opacity", 0); // hide all icons
 	  link.attr("stroke", "#999").attr("stroke-width", 2).attr("stroke-opacity", 0.7);
 	  stopSparkle();
 	}
@@ -924,47 +1011,83 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	
 	const infoBox = document.getElementById("info-tooltip");
 
-	// Helper: format device info
+	// Accessibility: trap focus within open dialog
+	function trapFocus(e) {
+	  if (e.key !== 'Tab') return;
+	  var focusable = Array.prototype.slice.call(infoBox.querySelectorAll('button, a[href]'));
+	  if (focusable.length === 0) return;
+	  var first = focusable[0], last = focusable[focusable.length - 1];
+	  if (e.shiftKey) {
+	    if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+	  } else {
+	    if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+	  }
+	}
+
+	// Helper: build accessible HTML for the info panel
 	function formatProductInfo(d) {
-	  let html = `<strong>${d.productName}</strong> <span style="font-size:1em; color:#00274c;">(${d.productType})</span><br>`;
-	  html += `<em>Manufacturer:</em> ${d.manufacturer}<br>`;
-	  if (d.notes) html += `<div style="margin-top:6px; color:#555;">${d.notes}</div>`;
-	  if (d.url) html += `<br><a href="${d.url}" target="_blank">More Info<small ><sup>&nbsp;↗️</sup></small></a>`;
+	  var emoji = deviceEmoji(d.productType);
+	  var safeUrl = d.url ? d.url.replace(/"/g, '&quot;') : '';
+	  var safeName = d.productName.replace(/"/g, '&quot;');
+	  var html = '';
+	  html += '<button class="itt-close" onclick="hideInfoBox()" aria-label="Close dialog">&#x2715;</button>';
+	  html += '<div class="itt-header">';
+	  html += '<span class="itt-emoji" aria-hidden="true">' + emoji + '</span>';
+	  html += '<span class="itt-title" id="info-tooltip-title">' + d.productName + '</span>';
+	  html += '</div>';
+	  html += '<div class="itt-body">';
+	  html += '<div class="itt-meta">';
+	  html += '<span class="itt-badge">' + d.productType + '</span>';
+	  html += '<span class="itt-manufacturer">' + d.manufacturer + '</span>';
+	  html += '</div>';
+	  if (d.notes) {
+	    html += '<div class="itt-notes">' + d.notes + '</div>';
+	  }
+	  if (d.url) {
+	    html += '<a class="itt-link" href="' + safeUrl + '" target="_blank" rel="noopener"';
+	    html += ' aria-label="More info about ' + safeName + ' (opens in new tab)">';
+	    html += 'More Info <span aria-hidden="true">&#x2197;</span></a>';
+	  }
+	  html += '</div>';
 	  return html;
 	}
 
-	// Show info box, position near click, adjust for mobile/desktop
+	// Show info box, positioned near click; focus-managed for accessibility
 	function showInfoBox(d, evt) {
 	  infoBox.innerHTML = formatProductInfo(d);
-	  infoBox.style.display = "block";
-	  // Position near click or node center (for mobile, evt can be undefined sometimes)
-	  let x = 0, y = 0;
+	  infoBox.style.display = 'block';
+	  var x = 0, y = 0;
 	  if (evt && evt.clientX && evt.clientY) {
-		x = evt.clientX;
-		y = evt.clientY;
+	    x = evt.clientX;
+	    y = evt.clientY;
 	  } else if (d.x && d.y) {
-		// project node's SVG coordinates to screen coordinates
-		let p = d3.zoomTransform(svg.node());
-		x = d.x * p.k + p.x;
-		y = d.y * p.k + p.y;
+	    var p = d3.zoomTransform(svg.node());
+	    x = d.x * p.k + p.x;
+	    y = d.y * p.k + p.y;
 	  } else {
-		x = window.innerWidth/2 - 140;
-		y = window.innerHeight/2 - 80;
+	    x = window.innerWidth / 2 - 140;
+	    y = window.innerHeight / 2 - 80;
 	  }
-	  // Try not to overflow bottom/right
-	  setTimeout(() => {
-		const w = infoBox.offsetWidth, h = infoBox.offsetHeight;
-		let left = Math.min(x + 20, window.innerWidth - w - 16);
-		let top = Math.min(y - h/2, window.innerHeight - h - 12);
-		top = Math.max(64, top); // Don't go under header
-		infoBox.style.left = left + "px";
-		infoBox.style.top = top + "px";
+	  setTimeout(function() {
+	    var w = infoBox.offsetWidth, h = infoBox.offsetHeight;
+	    var left = Math.min(x + 20, window.innerWidth - w - 16);
+	    var top = Math.min(y - h / 2, window.innerHeight - h - 12);
+	    top = Math.max(70, top);
+	    infoBox.style.left = left + 'px';
+	    infoBox.style.top = top + 'px';
+	    // Move focus to close button for screen readers / keyboard users
+	    var closeBtn = infoBox.querySelector('.itt-close');
+	    if (closeBtn) closeBtn.focus();
+	    infoBox.addEventListener('keydown', trapFocus);
 	  });
-	  infoBox.setAttribute('aria-live', 'assertive');
-	  infoBox.setAttribute('role', 'dialog');
 	}
-	// Hide
-	function hideInfoBox() { infoBox.style.display = "none"; infoBox.innerHTML = ""; }
+
+	// Hide and clean up
+	function hideInfoBox() {
+	  infoBox.removeEventListener('keydown', trapFocus);
+	  infoBox.style.display = 'none';
+	  infoBox.innerHTML = '';
+	}
 
 	// Hide on outside click, or ESC key
 	window.addEventListener("pointerdown", function (e) {
