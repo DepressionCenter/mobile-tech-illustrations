@@ -3,7 +3,7 @@ This file is part of Mobile Technologies for Research: Illustrations
 GlucoseMonitor-InsulinDeliveryDevice-Integration.html
 Author(s): Gabriel Mongefranco.
 Created: 2026-01-13
-Last Modified: 2026-01-13
+Last Modified: 2026-04-27
 Summary: Glucose Monitor and Insulin Delivery Device Integrations.
 Notes: See README file for documentation and full license information.
 
@@ -196,7 +196,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 		z-index: 9999;
 		font-size:16px;"></div>  
   <script>
-    const deviceInfo = {
+    const productInfo = {
 	  // ------- CGMs --------
 	  FreestyleLibre2Plus: {
 		productName: "Freestyle Libre 2 Plus",
@@ -266,7 +266,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 		manufacturer: "Medtronic",
 		productType: "CGM",
 		url: "https://www.medtronicdiabetes.com/download-library/simplera-sync-sensor",
-		notes: "6 days, worn on arm; for use with MiniMed 780G insulin pumps."
+		notes: "6 days, worn on arm; for use with MiniMed insulin pumps."
 	  },
 	  Eversense365: {
 		productName: "Eversense 365",
@@ -310,49 +310,56 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	  Omnipod5: {
 		productName: "Omnipod 5",
 		manufacturer: "Insulet",
-		productType: "Insulin Pump",
+		productType: "Insulin Pump or Delivery System",
 		url: "https://www.omnipod.com/what-is-omnipod/omnipod-5",
 		notes: "Tubeless patch insulin pump; hybrid closed-loop; compatible with Freestyle Libre 2 Plus and Dexcom G7 CGMs."
 	  },
 	  OmnipodDASH: {
 		productName: "Omnipod DASH",
 		manufacturer: "Insulet",
-		productType: "Insulin Pump",
+		productType: "Insulin Pump or Delivery System",
 		url: "https://www.omnipod.com/what-is-omnipod/omnipod-dash",
 		notes: "Tubeless patch pump for open loop (no automation based on CGM values); compatible with BGMs."
 	  },
 	  MiniMed780G: {
 		productName: "MiniMed 780G",
-		manufacturer: "Medtronic",
-		productType: "Insulin Pump",
+		manufacturer: "Medtronic MiniMed",
+		productType: "Insulin Pump or Delivery System",
 		url: "https://www.medtronic.com/en-us/healthcare-professionals/products/diabetes/insulin-pumps/minimed-780g-insulin-pump.html",
 		notes: "Hybrid closed-loop insulin pump; compatible with Instinct, Guardian 3, Guardian 4, Simplera Sync CGMs."
+	  },
+	  MiniMedFlex: {
+		productName: "MiniMed Flex",
+		manufacturer: "Medtronic MiniMed",
+		productType: "Insulin Pump or Delivery System",
+		url: "https://www.minimed.com/en-us/products/minimed-flex-system/",
+		notes: "Hybrid closed-loop, compact insulin pump with the same SmartGuard algorithm as 780g; tubed, screenless, requires a phone; compatible with Instinct and Simplera Sync CGMs."
 	  },
 	  Twiist: {
 		productName: "Twiist",
 		manufacturer: "Sequel Medtech",
-		productType: "Insulin Pump",
+		productType: "Insulin Pump or Delivery System",
 		url: "https://www.twiist.com/",
-		notes: "Hybrid closed-loop insulin pump that uses the Tidepool Loop algorithm; tubed but wearable; compatible with Freestyle Libre 3 Plus and Eversense 365 CGMs."
+		notes: "Hybrid closed-loop, compact insulin pump that uses the Tidepool Loop algorithm; tubed but wearable, screenless, requires a phone; compatible with Freestyle Libre 3 Plus and Eversense 365 CGMs."
 	  },
 	  TandemTSlimX2: {
 		productName: "t:slim X2",
 		manufacturer: "Tandem Diabetes Care",
-		productType: "Insulin Pump",
+		productType: "Insulin Pump or Delivery System",
 		url: "https://www.tandemdiabetes.com/products/t-slim-x2-insulin-pump/",
 		notes: "Hybrid closed-loop insulin pump; compatible with Freestyle Libre 3 Plus, Dexcom G6, and Dexcom G7 CGMs."
 	  },
 	  TandemMobi: {
 		productName: "Tandem Mobi",
 		manufacturer: "Tandem Diabetes Care",
-		productType: "Insulin Pump",
+		productType: "Insulin Pump or Delivery System",
 		url: "https://www.tandemdiabetes.com/products/tandem-mobi/",
-		notes: "Hybrid closed-loop insulin pump; tubed but wearable; compatible with Dexcom G6 and Dexcom G7 CGMs."
+		notes: "Hybrid closed-loop, compact insulin pump; tubed but wearable, screenless, requires a phone; compatible with Dexcom G6 and Dexcom G7 CGMs."
 	  },
 	  iLetBionicPancreas: {
 		productName: "iLet Bionic Pancreas",
 		manufacturer: "Beta Bionics",
-		productType: "Insulin Pump",
+		productType: "Insulin Pump or Delivery System",
 		url: "https://www.betabionics.com/ilet-bionic-pancreas/",
 		notes: "Closed-loop insulin pump; compatible with Freestyle Libre 3 Plus, Dexcom G6, and Dexcom G7 CGMs."
 	  },
@@ -360,8 +367,8 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	  // ------- Smart Insulin Pens --------
 	  InPen: {
 		productName: "InPen",
-		manufacturer: "Medtronic",
-		productType: "Smart Insulin Pen",
+		manufacturer: "Medtronic MiniMed",
+		productType: "Smart Insulin Pen or Cap",
 		url: "https://www.medtronicdiabetes.com/products/inpen-smart-insulin-pen-system",
 		notes: "Bluetooth-enabled smart insulin pen; compatible with Instinct and Simplera CGMs."
 	  },
@@ -370,7 +377,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	  TidepoolPlus: {
 		productName: "Tidepool+",
 		manufacturer: "Tidepool",
-		productType: "Study Management Platform",
+		productType: "Diabetes Data Management Platform",
 		url: "https://www.tidepool.org/providers/tidepoolplus",
 		notes: "Diabetes data aggregation platform."
 	},
@@ -378,11 +385,75 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	Glooko: {
 		productName: "Glooko",
 		manufacturer: "Glooko",
-		productType: "Study Management Platform",
+		productType: "Diabetes Data Management Platform",
 		url: "https://glooko.com/clinicalresearch/",
 		notes: "Diabetes data aggregation and study management platform."
-	}
-	};
+	},
+
+	CareLink: {
+        productName: "CareLink Clinic",
+        manufacturer: "Medtronic MiniMed",
+        productType: "Remote Patient Monitoring Service",
+        url: "https://www.professional.minimed.com/en-us/product-portfolio/carelink-clinic-software/",
+        notes: "Proprietary cloud-based data management system for Medtronic MiniMed product insulin pumps, smart insulin pens, and CGMs."
+    } /*
+
+    AppleHealth: {
+        productName: "Apple Health",
+        manufacturer: "Apple",
+        productType: "Device and Health Data Aggregator",
+        url: "https://www.apple.com/health/",
+        notes: "OS-level health framework and consumer hub for iOS. Acts as a local data router on the user's iPhone to aggregate device data for other integrated apps to read."
+    },
+
+    HealthConnect: {
+        productName: "Health Connect",
+        manufacturer: "Google",
+        productType: "Device and Health Data Aggregator",
+        url: "https://developer.android.com/health-and-fitness/health-connect",
+        notes: "OS-level health framework and consumer hub for Android. Standardizes health and fitness data sharing between different apps natively on the user's device."
+    },
+
+    GuavaHealth: {
+        productName: "Guava",
+        manufacturer: "Guava Health",
+        productType: "Mobile App (Digital Health)",
+        url: "https://guavahealth.com/",
+        notes: "Patient-facing Personal Health Record (PHR) and health tracker. Allows patients to securely aggregate their own medical records, labs, and device data (pulling from sources like Apple Health, MyChart, and LibreView)."
+    },
+
+	MyDataHelps: {
+        productName: "MyDataHelps",
+        manufacturer: "CareEvolution",
+        productType: "Remote Study Management System",
+        url: "https://mydatahelps.org/",
+        notes: "Clinical trial and research platform designed for digital health studies, ePROs, and integrating wearable/device data alongside EHRs."
+    },
+
+    Metricwire: {
+        productName: "Metricwire",
+        manufacturer: "Metricwire",
+        productType: "Remote Study Management System",
+        url: "https://metricwire.com/",
+        notes: "Research platform focusing on Ecological Momentary Assessment (EMA) and real-world evidence collection through mobile apps."
+    },
+
+    ExpiWell: {
+        productName: "ExpiWell",
+        manufacturer: "ExpiWell",
+        productType: "Remote Study Management System",
+        url: "https://www.expiwell.com/",
+        notes: "Experience sampling method (ESM) and EMA platform for surveys, daily diaries, and integrating wearable sensor data."
+    },
+
+    Avicenna: {
+        productName: "Avicenna",
+        manufacturer: "Avicenna Research",
+        productType: "Remote Study Management System",
+        url: "https://avicennaresearch.com/",
+        notes: "Health and clinical research platform supporting eCOA, ePRO, EMAs, and sensor-based behavioral measurement."
+    } */
+};
 
     // --- Links (compatibility) ---
     const links = [
@@ -394,7 +465,13 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       { source: "Simplera", target: "InPen" },
       { source: "Instinct", target: "InPen" },
       { source: "Instinct", target: "MiniMed780G" },
+	  { source: "Instinct", target: "MiniMedFlex" },
+	  { source: "InPen", target: "CareLink" },
+	  { source: "Simplera", target: "CareLink" },
+	  { source: "MiniMed780G", target: "CareLink" },
+	  { source: "MiniMedFlex", target: "CareLink" },
       { source: "SimpleraSync", target: "MiniMed780G" },
+	  { source: "SimpleraSync", target: "MiniMedFlex" },
       { source: "Guardian3", target: "MiniMed780G" },
       { source: "Guardian4", target: "MiniMed780G" },
       { source: "AccuChekGuideLink", target: "MiniMed780G" },
@@ -434,14 +511,18 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
     ];
 
     const nodeIds = new Set(links.flatMap(l => [l.source, l.target]));
-    const nodes = Array.from(nodeIds).map(id => ({ id, ...deviceInfo[id] }));
+    const nodes = Array.from(nodeIds).map(id => ({ id, ...productInfo[id] }));
 
     const colors = {
       CGM: "#00274C",      // Michigan dark blue
       BGM: "#0066B1",      // Michigan blue
-      "Insulin Pump": "#FFCB05",     // Maize yellow
-      "Smart Insulin Pen": "#FFF275",      // Lighter maize yellow
-	  "Study Management Platform": "#DCDCDC",	// Light gray
+      "Insulin Pump or Delivery System": "#FFCB05",     // Maize yellow
+      "Smart Insulin Pen or Cap": "#FFF275",      // Lighter maize yellow
+	  "Remote Study Management System": "#DCDCDC",	// Light gray
+	  "Remote Patient Monitoring Service": "#DCDCDC",	// Light gray
+	  "Diabetes Data Management Platform": "#DCDCDC",	// Light gray
+	  "Device and Health Data Aggregator": "#DCDCDC",	// Light gray
+	  "Mobile App (Digital Health)": "#DCDCDC",	// Light gray
       other: "#C2C2C2"
     };
 
@@ -451,17 +532,22 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	
     function labelColor(node) {
       if (node.productType === "CGM" || node.productType === "BGM") return "#FFF";
-      if (node.productType === "Insulin Pump" || node.productType === "Smart Insulin Pen" || node.productType === "Study Management Platform") return "#00274C";
+      if (node.productType === "Insulin Pump or Delivery System" || node.productType === "Smart Insulin Pen or Cap" || node.productType === "Remote Study Management System") return "#00274C";
       return "#333";
     }
 	
 	function deviceEmoji(type) {
 	  switch(type) {
-		case "CGM": return "📡";
+		case "CGM": return "🩹";
 		case "BGM": return "🩸";
-		case "Insulin Pump": return "🤖";
-		case "Smart Insulin Pen": return "🖊️";
-		case "Study Management Platform": return "👩‍🔬";
+		case "Insulin Pump or Delivery System": return "📟";
+		case "Smart Insulin Pen or Cap": return "💉";
+		case "Remote Study Management System": return "👩🏼‍🔬";
+		case "Remote Patient Monitoring Service":
+			case "Diabetes Data Management Platform":
+			case "Device and Health Data Aggregator":
+			return "📈";
+		case "Mobile App (Digital Health)": return "📱";
 		default: return "🖲️"; // generic sensor icon
 	  }
 	}
@@ -786,7 +872,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 	const infoBox = document.getElementById("info-tooltip");
 
 	// Helper: format device info
-	function formatDeviceInfo(d) {
+	function formatProductInfo(d) {
 	  let html = `<strong>${d.productName}</strong> <span style="font-size:1em; color:#00274c;">(${d.productType})</span><br>`;
 	  html += `<em>Manufacturer:</em> ${d.manufacturer}<br>`;
 	  if (d.notes) html += `<div style="margin-top:6px; color:#555;">${d.notes}</div>`;
@@ -796,7 +882,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 
 	// Show info box, position near click, adjust for mobile/desktop
 	function showInfoBox(d, evt) {
-	  infoBox.innerHTML = formatDeviceInfo(d);
+	  infoBox.innerHTML = formatProductInfo(d);
 	  infoBox.style.display = "block";
 	  // Position near click or node center (for mobile, evt can be undefined sometimes)
 	  let x = 0, y = 0;
