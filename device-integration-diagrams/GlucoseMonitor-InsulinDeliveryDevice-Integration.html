@@ -291,14 +291,14 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
 		url: "https://www.accu-chek.com/products/meters/guide-link",
 		notes: "Bluetooth-enabled blood glucose meter (glucometer); compatible with Medtronic MiniMed insulin pumps."
 	  },
-	  FSLibre2Receiver: {
+	  FSLibre2Reader: {
 		productName: "Freestyle Libre 2 Reader",
 		manufacturer: "Abbott",
 		productType: "BGM",
 		url: "https://www.support.freestyle.abbott/hc/en-us/categories/14820072359575-Reader?section_id=14820562090135#",
 		notes: "Receiver with built-in blood glucose meter using Precision Neo strips."
 	  },
-	  FSLibre3Receiver: {
+	  FSLibre3Reader: {
 		productName: "Freestyle Libre 3 Reader",
 		manufacturer: "Abbott",
 		productType: "BGM",
@@ -396,7 +396,31 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
         productType: "Remote Patient Monitoring Service",
         url: "https://www.professional.minimed.com/en-us/product-portfolio/carelink-clinic-software/",
         notes: "Proprietary cloud-based data management system for Medtronic MiniMed product insulin pumps, smart insulin pens, and CGMs."
-    } /*
+    },
+	
+	TandemSource: {
+        productName: "Tandem Source",
+        manufacturer: "Tandem Diabetes Care",
+        productType: "Remote Patient Monitoring Service",
+        url: "https://www.tandemdiabetes.com/healthcare-professionals/tandem-source-professional",
+        notes: "Proprietary cloud-based data management system for Tandem insulin pumps."
+    },
+	
+	LibreView: {
+        productName: "LibreView",
+        manufacturer: "Abbott",
+        productType: "Remote Patient Monitoring Service",
+        url: "https://www.tandemdiabetes.com/healthcare-professionals/tandem-source-professional",
+        notes: "Proprietary cloud-based data management system for Abbott Freestyle Libre CGMs."
+    },
+	
+	DexcomClarity: {
+        productName: "Dexcom Clarity",
+        manufacturer: "Dexcom",
+        productType: "Remote Patient Monitoring Service",
+        url: "https://www.tandemdiabetes.com/healthcare-professionals/tandem-source-professional",
+        notes: "Proprietary cloud-based data management system for Dexcom CGMs."
+    }/*
 
     AppleHealth: {
         productName: "Apple Health",
@@ -460,7 +484,11 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       { source: "DexcomG6", target: "Omnipod5" },
       { source: "DexcomG7", target: "Omnipod5" },
       { source: "DexcomG7_15Day", target: "Omnipod5" },
+	  { source: "DexcomG6", target: "DexcomClarity" },
+      { source: "DexcomG7", target: "DexcomClarity" },
+      { source: "DexcomG7_15Day", target: "DexcomClarity" },
       { source: "FreestyleLibre2Plus", target: "Omnipod5" },
+	  { source: "FreestyleLibre2Plus", target: "LibreView" },
       { source: "ContourNextOne", target: "OmnipodDASH" },
       { source: "Simplera", target: "InPen" },
       { source: "Instinct", target: "InPen" },
@@ -475,8 +503,8 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       { source: "Guardian3", target: "MiniMed780G" },
       { source: "Guardian4", target: "MiniMed780G" },
       { source: "AccuChekGuideLink", target: "MiniMed780G" },
-      { source: "FSLibre2Receiver", target: "FreestyleLibre2Plus" },
-      { source: "FSLibre3Receiver", target: "FreestyleLibre3Plus" },
+      { source: "FSLibre2Reader", target: "FreestyleLibre2Plus" },
+      { source: "FSLibre3Reader", target: "FreestyleLibre3Plus" },
       { source: "Eversense365", target: "Twiist" },
       { source: "FreestyleLibre3Plus", target: "Twiist" },
       { source: "FreestyleLibre3Plus", target: "iLetBionicPancreas" },
@@ -484,24 +512,31 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       { source: "DexcomG7", target: "iLetBionicPancreas" },
       { source: "DexcomG7_15Day", target: "iLetBionicPancreas" },
       { source: "FreestyleLibre3Plus", target: "TandemTSlimX2" },
+	  { source: "FreestyleLibre3Plus", target: "LibreView" },
       { source: "DexcomG6", target: "TandemTSlimX2" },
       { source: "DexcomG7", target: "TandemTSlimX2" },
       { source: "DexcomG6", target: "TandemMobi" },
       { source: "DexcomG7", target: "TandemMobi" },
+
+	  { source: "TandemTSlimX2", target: "TandemSource" },
+	  { source: "TandemMobi", target: "TandemSource" },
 	  
 	  
-	  { source: "DexcomG6", target: "TidepoolPlus" },
-      { source: "DexcomG7", target: "TidepoolPlus" },
-      { source: "DexcomG7_15Day", target: "TidepoolPlus" },
-      { source: "FreestyleLibre2Plus", target: "TidepoolPlus" },
-	  { source: "FreestyleLibre3Plus", target: "TidepoolPlus" },
+	  { source: "DexcomClarity", target: "TidepoolPlus" },
+	  { source: "DexcomClarity", target: "Glooko" },
+      { source: "LibreView", target: "TidepoolPlus" },
+	  { source: "LibreView", target: "Glooko" },
+	  
+	  
+	  { source: "FSLibre2Reader", target: "LibreView" },
+	  { source: "FSLibre3Reader", target: "LibreView" },
+      { source: "FreestyleLibre2Plus", target: "LibreView" },
+	  { source: "FreestyleLibre3Plus", target: "LibreView" },
       { source: "Twiist", target: "TidepoolPlus" },
 	  
-	  { source: "DexcomG6", target: "Glooko" },
-      { source: "DexcomG7", target: "Glooko" },
-      { source: "DexcomG7_15Day", target: "Glooko" },
-      { source: "FreestyleLibre2Plus", target: "Glooko" },
-	  { source: "FreestyleLibre3Plus", target: "Glooko" },
+	  { source: "DexcomG6", target: "DexcomClarity" },
+      { source: "DexcomG7", target: "DexcomClarity" },
+      { source: "DexcomG7_15Day", target: "DexcomClarity" },
       { source: "Eversense365", target: "Glooko" },
 	  { source: "ContourNextOne", target: "Glooko" },
       { source: "AccuChekGuideLink", target: "Glooko" },
