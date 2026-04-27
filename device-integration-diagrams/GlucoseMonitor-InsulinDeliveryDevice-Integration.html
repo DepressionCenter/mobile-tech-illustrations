@@ -420,7 +420,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
         productType: "Remote Patient Monitoring Service",
         url: "https://www.tandemdiabetes.com/healthcare-professionals/tandem-source-professional",
         notes: "Proprietary cloud-based data management system for Dexcom CGMs."
-    }/*
+    },
 
     AppleHealth: {
         productName: "Apple Health",
@@ -476,30 +476,23 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
         productType: "Remote Study Management System",
         url: "https://avicennaresearch.com/",
         notes: "Health and clinical research platform supporting eCOA, ePRO, EMAs, and sensor-based behavioral measurement."
-    } */
+    }
 };
 
     // --- Links (compatibility) ---
     const links = [
+      // --- Device to Device ---
       { source: "DexcomG6", target: "Omnipod5" },
       { source: "DexcomG7", target: "Omnipod5" },
       { source: "DexcomG7_15Day", target: "Omnipod5" },
-	  { source: "DexcomG6", target: "DexcomClarity" },
-      { source: "DexcomG7", target: "DexcomClarity" },
-      { source: "DexcomG7_15Day", target: "DexcomClarity" },
       { source: "FreestyleLibre2Plus", target: "Omnipod5" },
-	  { source: "FreestyleLibre2Plus", target: "LibreView" },
       { source: "ContourNextOne", target: "OmnipodDASH" },
       { source: "Simplera", target: "InPen" },
       { source: "Instinct", target: "InPen" },
       { source: "Instinct", target: "MiniMed780G" },
-	  { source: "Instinct", target: "MiniMedFlex" },
-	  { source: "InPen", target: "CareLink" },
-	  { source: "Simplera", target: "CareLink" },
-	  { source: "MiniMed780G", target: "CareLink" },
-	  { source: "MiniMedFlex", target: "CareLink" },
+      { source: "Instinct", target: "MiniMedFlex" },
       { source: "SimpleraSync", target: "MiniMed780G" },
-	  { source: "SimpleraSync", target: "MiniMedFlex" },
+      { source: "SimpleraSync", target: "MiniMedFlex" },
       { source: "Guardian3", target: "MiniMed780G" },
       { source: "Guardian4", target: "MiniMed780G" },
       { source: "AccuChekGuideLink", target: "MiniMed780G" },
@@ -512,38 +505,63 @@ with this program. If not, see <https://www.gnu.org/licenses/>.
       { source: "DexcomG7", target: "iLetBionicPancreas" },
       { source: "DexcomG7_15Day", target: "iLetBionicPancreas" },
       { source: "FreestyleLibre3Plus", target: "TandemTSlimX2" },
-	  { source: "FreestyleLibre3Plus", target: "LibreView" },
       { source: "DexcomG6", target: "TandemTSlimX2" },
       { source: "DexcomG7", target: "TandemTSlimX2" },
       { source: "DexcomG6", target: "TandemMobi" },
       { source: "DexcomG7", target: "TandemMobi" },
 
-	  { source: "TandemTSlimX2", target: "TandemSource" },
-	  { source: "TandemMobi", target: "TandemSource" },
-	  
-	  
-	  { source: "DexcomClarity", target: "TidepoolPlus" },
-	  { source: "DexcomClarity", target: "Glooko" },
-      { source: "LibreView", target: "TidepoolPlus" },
-	  { source: "LibreView", target: "Glooko" },
-	  
-	  
-	  { source: "FSLibre2Reader", target: "LibreView" },
-	  { source: "FSLibre3Reader", target: "LibreView" },
-      { source: "FreestyleLibre2Plus", target: "LibreView" },
-	  { source: "FreestyleLibre3Plus", target: "LibreView" },
-      { source: "Twiist", target: "TidepoolPlus" },
-	  
-	  { source: "DexcomG6", target: "DexcomClarity" },
+      // --- Device to Manufacturer Cloud ---
+      { source: "DexcomG6", target: "DexcomClarity" },
       { source: "DexcomG7", target: "DexcomClarity" },
       { source: "DexcomG7_15Day", target: "DexcomClarity" },
+      { source: "InPen", target: "CareLink" },
+      { source: "Simplera", target: "CareLink" },
+      { source: "MiniMed780G", target: "CareLink" },
+      { source: "MiniMedFlex", target: "CareLink" },
+      { source: "FreestyleLibre3Plus", target: "LibreView" },
+      { source: "TandemTSlimX2", target: "TandemSource" },
+      { source: "TandemMobi", target: "TandemSource" },
+      { source: "FSLibre2Reader", target: "LibreView" },
+      { source: "FSLibre3Reader", target: "LibreView" },
+      { source: "FreestyleLibre2Plus", target: "LibreView" },
+      { source: "FreestyleLibre3Plus", target: "LibreView" },
+
+      // --- Device to Third Party Cloud (Including OS Frameworks) ---
+      { source: "DexcomG7_15Day", target: "AppleHealth" },
+      { source: "DexcomG7", target: "AppleHealth" },
+      { source: "DexcomG6", target: "AppleHealth" },
+      { source: "DexcomG7_15Day", target: "HealthConnect" },
+      { source: "DexcomG7", target: "HealthConnect" },
+      { source: "DexcomG6", target: "HealthConnect" },
+      { source: "ContourNextOne", target: "AppleHealth" },
+      { source: "InPen", target: "AppleHealth" },
+      { source: "Eversense365", target: "AppleHealth" },
+      { source: "Twiist", target: "TidepoolPlus" },
+      { source: "Twiist", target: "AppleHealth" },
       { source: "Eversense365", target: "Glooko" },
-	  { source: "ContourNextOne", target: "Glooko" },
+      { source: "ContourNextOne", target: "Glooko" },
       { source: "AccuChekGuideLink", target: "Glooko" },
       { source: "Omnipod5", target: "Glooko" },
-      { source: "OmnipodDASH", target: "Glooko" }
-	  
-    ];
+      { source: "OmnipodDASH", target: "Glooko" },
+
+      // --- Cloud to Cloud (Including OS Frameworks to Aggregators) ---
+      { source: "AppleHealth", target: "Glooko" },
+      { source: "HealthConnect", target: "Glooko" },
+      { source: "AppleHealth", target: "TidepoolPlus" },
+      { source: "DexcomClarity", target: "TidepoolPlus" },
+      { source: "DexcomClarity", target: "Glooko" },
+      { source: "LibreView", target: "TidepoolPlus" },
+      { source: "LibreView", target: "Glooko" },
+      { source: "AppleHealth", target: "GuavaHealth" },
+      { source: "HealthConnect", target: "GuavaHealth" },
+      { source: "LibreView", target: "GuavaHealth" },
+      { source: "DexcomClarity", target: "GuavaHealth" },
+      { source: "AppleHealth", target: "MyDataHelps" },
+      { source: "HealthConnect", target: "MyDataHelps" }
+
+      // As of April 2026, the other mobile tech platforms did not bring glucose data,
+      // either through Apple Health / Health Connect or through CGM vendor APIs.
+	];
 
     const nodeIds = new Set(links.flatMap(l => [l.source, l.target]));
     const nodes = Array.from(nodeIds).map(id => ({ id, ...productInfo[id] }));
